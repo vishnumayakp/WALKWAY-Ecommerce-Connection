@@ -15,7 +15,7 @@ function SlideShow() {
   useEffect(()=>{
     setTimeout(()=>{
       setCount((pre)=>pre===images.length-1?0:pre+1)
-    },1000)
+    },3000)
   },[count])
     // const settings = {
     //     dots: true,
@@ -29,7 +29,7 @@ function SlideShow() {
     //   };
   return (
 
-      <div className=" w-full flex h-[41rem] bg-slate-300 justify-center">
+      <div className="w-full  flex h-[41rem] bg-slate-300 justify-center">
       {/* <Slider {...settings} className='w-[95%]'> */}
        
             <img src={images[count]} alt="" className=" md:h-[100%] h-[100%]   object-cover " />

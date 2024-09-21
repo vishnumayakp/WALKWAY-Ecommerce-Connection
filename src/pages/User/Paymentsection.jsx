@@ -1,16 +1,16 @@
 import React from 'react'
+import PaymentPage from '../../components/User/Payment/PaymentPage'
 import Header from '../../components/User/Header'
-import ProductDetails from '../../components/User/Product/ProductDetails'
 import Uppernav from '../../components/User/Uppernav'
 
-function Product() {
+function Paymentsection() {
   return (
     <div>
-      <Uppernav/>
+        <Uppernav/>
       <Header/>
-      <ProductDetails/>
+      <PaymentPage/>
     </div>
   )
 }
 
-export default Product
+export default Paymentsection

@@ -1,16 +1,16 @@
 import React from 'react'
 import Header from '../../components/User/Header'
-import ProductDetails from '../../components/User/Product/ProductDetails'
+import Cart from '../../components/User/Cart Pro/Cart'
 import Uppernav from '../../components/User/Uppernav'
 
-function Product() {
+function CartPage() {
   return (
     <div>
       <Uppernav/>
       <Header/>
-      <ProductDetails/>
+      <Cart/>
     </div>
   )
 }
 
-export default Product
+export default CartPage
