@@ -6,7 +6,6 @@ import Uppernav from '../../components/User/Uppernav'
 function Paymentsection() {
   return (
     <div>
-        <Uppernav/>
       <Header/>
       <PaymentPage/>
     </div>

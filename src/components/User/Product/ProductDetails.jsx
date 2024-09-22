@@ -1,26 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import product1 from '../../../assets/kids.png'
+import { getProductById } from '../../../Api/Connection'
+import { useParams } from 'react-router-dom'
 
 function ProductDetails() {
+  const [product,setProduct]=useState({})
+  const [state,setState]=useState(0)
+  const {id}=useParams()
+  useEffect(()=>{
+    getProductById(id)
+    .then((res)=>setProduct(res.data))  
+  },[id])
+ 
+  
   return (
     <div className='flex justify-center lg:p-5'>
       <div className='md:w-[80%] w-full xl:flex-row  p-5 shadow-lg border space-x-5  flex flex-col'>
         <div className=' space-x-5 w-full p-10 md:h-[36rem] h-[40%] flex'>
           <div className='w-[25%] lg:h-[100%] space-y-4 scrollnone overflow-scroll md:p-7'>
-            <div className='w-full h-[100px] bg-gray-200'>fefrewg</div>
-            <div className='w-full h-[100px] bg-gray-200'>fefrewg</div>
-            <div className='w-full h-[100px] bg-gray-200'>fefrewg</div>
-            <div className='w-full h-[100px] bg-gray-200'>fefrewg</div>
+          {product.images && product.images.map((value, index) => (
+              <div onClick={()=>setState(index)} key={index} className='w-full  bg-gray-200'>
+                <img className='h-[100%] w-[100%]' src={value} alt={`Product Image ${index + 1}`} />
+              </div>
+            ))}
+
           </div>
           <div className='w-[75%] h-[100%]'>
-            <div className='h-[100%] bg-gray-200'><img src={product1} alt="" /></div>
+            {
+              product.images?<div className='h-[100%] bg-gray-200'><img className='h-[100%] w-[100%]' src={product.images[state]} alt="" /></div>:null
+            }
           </div>
         </div>
         <div className='  flex space-y-10  flex-col'>
-          <div className='flex flex-col space-y-3 items-start'>
-          <h1 className='text-2xl'>Kids Shoes</h1>
-          <p className='font-bold'>$50.00</p>
-           <p className='text-sm text-left'>Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.</p>
+          <div className='flex flex-col space-y-1 items-start'>
+          <h1 className='text-2xl'>{product.name}</h1>
+           <p className='text-sm text-left'>{product.description}</p>
+           <p className='font-bold'>₹ {product.price}</p>
+           <p>⭐ {product.rating}</p>
             </div>
           <div className='border-2 w-40'>
             <select className='w-full focus:outline-none' name="" id="">
@@ -37,12 +53,14 @@ function ProductDetails() {
           <div className='border-2 w-40'>
             <select className='w-full focus:outline-none' name="" id="">
               <option value="">Select size</option>
-              <option value="">S</option>
-              <option value="">M</option>
-              <option value="">L</option>
-              <option value="">XL</option>
-              <option value="">XXL</option>
-              <option value="">XXXL</option>
+              {
+
+                product.available_sizes && (product.available_sizes).map((value)=>{
+                  return (
+                    <option value="">{value}</option>
+                  )
+                })
+              }
             </select>
           </div>
           <div className='flex gap-20 flex-col'>

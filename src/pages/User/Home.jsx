@@ -9,11 +9,12 @@ import ProductDetails from '../../components/User/Product/ProductDetails'
 function Home() {
   return (
     <div>
-        <Uppernav/>
-          <Header/>
+         <Header/>
+          <div>
           <SlideShow/>
           <Category/>
           <Overview/>
+          </div>
           </div>
   )
 }

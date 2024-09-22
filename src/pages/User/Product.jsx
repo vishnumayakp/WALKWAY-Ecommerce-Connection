@@ -6,7 +6,6 @@ import Uppernav from '../../components/User/Uppernav'
 function Product() {
   return (
     <div>
-      <Uppernav/>
       <Header/>
       <ProductDetails/>
     </div>
