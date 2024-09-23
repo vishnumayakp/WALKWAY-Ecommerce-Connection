@@ -7,6 +7,9 @@ import CartPage from './pages/User/CartPage';
 import Paymentsection from './pages/User/Paymentsection';
 import OrderShowPage from './pages/User/OrderShowPage';
 import ProfilePage from './pages/User/ProfilePage';
+import Registration from './pages/Registration'
+import Login from './pages/Login'
+import Shop from './pages/User/Shop';
 
 
 
@@ -20,6 +23,9 @@ function App() {
        <Route path='/payment' element={<Paymentsection/>}/>
        <Route path='/showorder' element={<OrderShowPage/>}/>
        <Route path='/profile' element={<ProfilePage/>}/>
+       <Route path='/signup' element={<Registration/>}/>
+       <Route path='/login' element={<Login/>}/>
+       <Route path='/shop' element={<Shop/>}/>
       </Routes>
     </div>
   );

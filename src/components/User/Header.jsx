@@ -1,13 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from '../../assets/Logo.png'
 import { BsCart4 } from "react-icons/bs";
 import { FaUser } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
-import Uppernav from './Uppernav';
 import { RxCrossCircled } from "react-icons/rx";
+import { getUserById } from '../../Api/Connection';
+import { useNavigate } from 'react-router-dom';
 
 
 function Header() {
+  const [userData,setUserData]=useState({})
+  const userId=localStorage.getItem('userId')
+  const navigate=useNavigate()
+  useEffect(()=>{
+    if(userId){
+      getUserById(userId)
+    .then((res)=>setUserData(res.data))
+    }
+  },[userId])
+   function handleAccount(){
+    if(userId){
+      navigate('/profile')
+    }else{
+      navigate('/login')
+    }
+   }
+
+   function handleCart(){
+    if(userId){
+      navigate('/cart')
+    }else{
+      navigate('/login')
+    }
+   }
+  
   return (
     <div className='z-50  w-full'>
        <div className='bg-white w-full flex justify-center items-center'>
@@ -29,8 +55,8 @@ function Header() {
           />
         </form>
         <h6 className="text-gray-300 hover:text-white">Shop</h6>
-        <button className="text-gray-300 flex hover:text-white"><FaUser className='h-6 w-6'/>Vishnumaya</button>
-        <button className="text-gray-300 flex hover:text-white"><BsCart4 className='h-7 w-7'/></button>
+        <button onClick={handleAccount} className="text-gray-300 flex hover:text-white"><FaUser onClick={()=>navigate('/profile')} className='h-6 w-6'/>{userId?userData.name:"Account"} </button>
+        <button onClick={handleCart} className="text-gray-300 flex hover:text-white"><BsCart4 className='h-7 w-7'/></button>
       </div>
       <div className='md:hidden text-white'>
         <button className='focus:outline-none'>☰</button>

@@ -49,10 +49,7 @@ function Overview() {
         <span>⭐{value.rating}</span>
         </div>
       </div>
-      /* <div className='  h-[30rem] w-[25rem]  sm:h-[24rem] sm:w-[18rem] md:h-[20rem] lg:w-[15rem] md:w-[16rem] bg-gray-200'></div>
-      <div className='  h-[30rem] w-[25rem] sm:h-[24rem] sm:w-[18rem] md:h-[20rem] lg:w-[15rem] md:w-[16rem] bg-gray-200'>fgfhrgtrj</div>
-      <div className='  h-[30rem] w-[25rem] sm:h-[24rem] sm:w-[18rem] md:h-[20rem] lg:w-[15rem] md:w-[16rem] bg-gray-200'>fgfhthtyj</div> */
-    
+
       )
       
     })}

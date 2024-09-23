@@ -1,6 +1,12 @@
 import React from 'react'
 import { FaUser } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 function Profile() {
+  const navigate=useNavigate();
+  function handleLogout(){
+    localStorage.clear()
+    navigate("/")
+  }
   return (
     <div className='w-[100%] flex justify-center flex-col mt-10 items-center  md:h-lvh'>
         <div className='w-[70%]  h-[70%] flex flex-col md:flex-row border-2 space-y-5'>
@@ -18,7 +24,7 @@ function Profile() {
             </div>
 
             <div className='w-[70%]'>
-                  <button className=' w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-xl'>Logout</button>
+                  <button onClick={handleLogout} className=' w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-xl'>Logout</button>
             </div>
             </div>
             </div>
