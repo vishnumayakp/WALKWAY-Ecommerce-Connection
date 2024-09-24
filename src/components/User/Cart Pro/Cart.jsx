@@ -1,36 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react'
 import product1 from '../../../assets/kids.png'
 import { AuthContext } from '../../../USeContext/UserContext'
-import { getCartById, updateCartById } from '../../../Api/Connection'
+import { getAddressById, getCartById, updateCartById } from '../../../Api/Connection'
+import { useNavigate } from 'react-router-dom'
 
 function Cart() {
   const [qty,setQty]=useState()
   const [cart, setCart]=useState([])
   const userId = localStorage.getItem('userId')
   const [totalPrice,setTotalPrice]=useState(0)
-  const [userDetails,setUserDetails]=useState({
-    fname:"",
-    lname:"",
-    address:"",
-    city:"",
-    pincode:"",
-    mobile:"",
-    email:""
-  })
+  const [address,setAddress]=useState({})
+  const navigate=useNavigate()
+  const {cartFlag,setCartFlag}=useContext(AuthContext)
 
-  function handleOnChange(e){
-    const {name,value}=e.target
-    setUserDetails({...userDetails,[name]:value})
-    console.log(userDetails);
-    
-  }
 //  const {cart} = useContext(AuthContext)
 
  useEffect(()=>{
+  if(userId){
   getCartById(userId)
   .then((res)=>{setCart(res)
   totalCartPrice(res)
-})
+  getAddressById(userId)
+  .then((res)=>setAddress(res))
+},[userId])
+  }
  },[userId,cart])
 
  function totalCartPrice(items){
@@ -58,8 +51,11 @@ function Cart() {
 function handleDelete(productId){
   let updatedCart=cart.filter((value)=>value.id!==productId)
   updateCartById(userId,{cart:updatedCart})
-  .then((res)=>setCart(res.data.cart))
-  
+  .then((res)=>{
+    setCart(res.data.cart)
+    setCartFlag(!cartFlag)
+  })
+ 
 }
   return (
     <div >
@@ -75,7 +71,7 @@ function handleDelete(productId){
 
         </div>
         <div className=' space-y-10 h-[90%] overflow-y-scroll scrollnone'>
-            {cart.map((value)=>{
+            {cart.length>0?cart.map((value)=>{
               return (
                 <div className='w-full flex justify-between items-center h-[10rem] p-4 border'>
                 <div className='w-[25%] flex font-semibold'><img className=' h-20 w-20' src={value.image} alt="" />
@@ -91,7 +87,9 @@ function handleDelete(productId){
           <button onClick={()=>handleDelete(value.id)} className='border bg-red-400 text-white p-1 rounded'>Remove</button>
             </div> 
               )
-            })}
+            }):
+            <span>cart is empty</span>
+            }
         </div>
       </div>
       </div>
@@ -102,24 +100,18 @@ function handleDelete(productId){
             <p>Subtotal:</p> <span className='ml-10'>{totalPrice}</span>
             </div>
             <hr className='w-[100%]  border-gray-300 text-xl'/>
-      <div className=' space-y-5 md:w-full w-full flex flex-col items-center'>
-                <form className='space-y-5   flex flex-col' action="">
-                    <div className='md:space-x-2 space-y-3 md:space-y-0'>
-                    <input onChange={handleOnChange} name='fname' className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text" placeholder='FirstName' />
-                    <input onChange={handleOnChange} name='lname' className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text"placeholder='SecondName' />
-                    </div>
-                    <div className=''>
-                    <textarea onChange={handleOnChange} name="address" className='border-2 p-2 text-sm w-[100%] md:w-[92%]' placeholder='Address' id=""/>
-                    </div>
-                    <div className='md:space-x-2 space-y-3'>
-                    <input onChange={handleOnChange} name='city'  className='border-2 p-2 text-sm w-[100%]  md:w-[45%]' type="text" placeholder='City/Town'/>
-                    <input onChange={handleOnChange} name='pincode' className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text" placeholder='Pincode'/>
-                    </div>
-                    <div className='md:space-x-2 space-y-3'>
-                    <input onChange={handleOnChange} name='mobile' className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text" placeholder='Mobile' />
-                    <input onChange={handleOnChange} name='email' className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text" placeholder='Email' />
-                    </div>
-                </form>
+      <div className='space-y-5 md:w-full w-full flex flex-col items-start'>
+        <div className='flex w-full justify-between'>
+        <h1 className='text-xl font-bold'>Address</h1>
+        <button onClick={()=>navigate('/profile')} className='border-2 bg-black text-white text-xs w-10 p-1 rounded'>Edit</button>
+        </div>
+                <div className=' w-[100%] text-left '>
+                  <h1>{address.fname} {address.lname}</h1>
+                  <h1>{address.city}</h1>
+                  <h1>{address.address} {address.pincode}</h1>
+                  <h1>{address.mobile}</h1>
+                  <h1>{address.email}</h1>
+                </div>
                 <hr className='w-[100%]  border-gray-300 text-xl'/>
 
                 <div className='p-5 w-[100%] space-y-10'>
@@ -127,7 +119,13 @@ function handleDelete(productId){
                     <p className='font-bold text-xl'>Toatal:</p><span>{totalPrice}</span>
                 </div>   
                     <div>
-                    <button className=' w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-3xl'>PROCEED TO CHECKOUT</button>
+                      {cart.length>0?(
+
+                        <button onClick={()=>navigate('/payment')} className=' w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-3xl'>PROCEED TO CHECKOUT</button>
+                      ):(
+                        
+                        <button onClick={()=>navigate('/')} className=' w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-3xl'>GO TO STORE</button>
+                      )}
                     </div>
                
                 </div>

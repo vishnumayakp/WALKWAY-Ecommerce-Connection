@@ -1,23 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Logo from '../../assets/Logo.png'
 import { BsCart4 } from "react-icons/bs";
 import { FaUser } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import { RxCrossCircled } from "react-icons/rx";
-import { getUserById } from '../../Api/Connection';
+import { getCartById, getUserById } from '../../Api/Connection';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../USeContext/UserContext';
 
 
 function Header() {
   const [userData,setUserData]=useState({})
   const userId=localStorage.getItem('userId')
   const navigate=useNavigate()
+  const [cartLength,setCartLength]=useState([])
+  const {cartFlag}=useContext(AuthContext)
+
   useEffect(()=>{
     if(userId){
       getUserById(userId)
     .then((res)=>setUserData(res.data))
+      getCartById(userId)
+      .then(res=>setCartLength(res))
     }
-  },[userId])
+  },[userId,cartFlag])
    function handleAccount(){
     if(userId){
       navigate('/profile')
@@ -56,7 +62,11 @@ function Header() {
         </form>
         <h6 className="text-gray-300 hover:text-white">Shop</h6>
         <button onClick={handleAccount} className="text-gray-300 flex hover:text-white"><FaUser onClick={()=>navigate('/profile')} className='h-6 w-6'/>{userId?userData.name:"Account"} </button>
-        <button onClick={handleCart} className="text-gray-300 flex hover:text-white"><BsCart4  className='h-7 w-7'/></button>
+        
+        <button onClick={handleCart} className="text-gray-300 flex hover:text-white">
+          <BsCart4  className='h-7 w-7'/>
+          <span className='absolute right-5 bg-white text-black rounded-2xl text-xs w-4'>{cartLength.length}</span>
+        </button>
       </div>
       <div className='md:hidden text-white'>
         <button className='focus:outline-none'>☰</button>

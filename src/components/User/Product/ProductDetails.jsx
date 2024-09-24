@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import product1 from '../../../assets/kids.png'
 import { getCartById, getProductById, updateCartById } from '../../../Api/Connection'
 import { useParams } from 'react-router-dom'
+import { AuthContext } from '../../../USeContext/UserContext'
 
 function ProductDetails() {
   const userId=localStorage.getItem('userId')
   const [product,setProduct]=useState({})
   const [state,setState]=useState(0)
   const [qty,setQty]=useState(1)
- 
+  const {cartFlag,setCartFlag}=useContext(AuthContext)
 
   const {id}=useParams()
   useEffect(()=>{
@@ -30,7 +31,7 @@ function ProductDetails() {
     updatedCart=[...currentCart,{...product,count:qty,totalPrice:product.price*qty}]
   }
   updateCartById(userId,{cart:updatedCart})
-    
+  .then(()=>setCartFlag(!cartFlag))
   }
   
   return (

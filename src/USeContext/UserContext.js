@@ -12,15 +12,12 @@ export const UserAuth = ({children})=>{
     const [user,setUser]=useState([])
     const [error,setError]=useState('')
     const [userId,setUserId]=useState("");
-    const [cart, setCart]=useState([])
+    const [cartFlag, setCartFlag]=useState(false)
 
     useEffect(()=>{
         getAllUsers()
         .then((res)=>setUser(res.data))
-
-        getCartById(id)
-        .then((res)=>setCart(res))
-    },[id])
+    },[])
 
     function userDataValidate(data){
         (user.find((value)=>{
@@ -36,7 +33,7 @@ export const UserAuth = ({children})=>{
     }
 
     return (
-        <AuthContext.Provider value={{userDataValidate,cart}}>
+        <AuthContext.Provider value={{userDataValidate,cartFlag,setCartFlag}}>
             {children}
         </AuthContext.Provider>
     )

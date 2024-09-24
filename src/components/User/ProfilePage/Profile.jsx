@@ -1,12 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaUser } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import { getAddressById, updateAddressById } from '../../../Api/Connection';
 function Profile() {
+  const[address,setAddress]=useState({})
   const navigate=useNavigate();
+  const userId=localStorage.getItem('userId')
   function handleLogout(){
     localStorage.clear()
     navigate("/")
   }
+
+  useEffect(()=>{
+    if(userId){
+      getAddressById(userId)
+      .then((res)=>setAddress(res))
+    }
+  },[])
 
   const [userDetails,setUserDetails]=useState({
     fname:"",
@@ -25,8 +35,16 @@ function Profile() {
     
   }
 
-  function handleSubmit(){
-    
+  function handleSubmit(e){
+    e.preventDefault()
+    updateAddressById(userId,{address:userDetails})
+    .then((res)=>setAddress(res.data.address))
+  }
+
+  function handleEdit(){
+    setAddress(null)
+    updateAddressById(userId,{address:null})
+    .then((res)=>setAddress(res.data.address))
   }
   return (
     <div className='w-[100%] flex justify-center flex-col mt-10 items-center  md:h-lvh'>
@@ -68,13 +86,15 @@ function Profile() {
 
             <div className=' space-y-5  flex flex-col items-center'>
               <span className='text-xl'>Address</span>
-                <form onSubmit={handleSubmit} className='space-y-5   flex flex-col' action="">
+                {
+                  !address?
+                  <form onSubmit={handleSubmit} className='space-y-5   flex flex-col' action="">
                     <div className='md:space-x-2 space-y-3 md:space-y-0'>
                     <input onChange={handleOnChange}  name='fname' className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text" placeholder='FirstName' />
                     <input onChange={handleOnChange}  name='lname' className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text"placeholder='SecondName' />
                     </div>
                     <div className=''>
-                    <textarea  name="address" className='border-2 p-2 text-sm w-[100%] md:w-[92%]' placeholder='Address' id=""/>
+                    <textarea onChange={handleOnChange} name="address" className='border-2 p-2 text-sm w-[100%] md:w-[92%]' placeholder='Address' id=""/>
                     </div>
                     <div className='md:space-x-2 space-y-3'>
                     <input onChange={handleOnChange}  name='city'  className='border-2 p-2 text-sm w-[100%]  md:w-[45%]' type="text" placeholder='City/Town'/>
@@ -88,6 +108,32 @@ function Profile() {
                     <button type='submit' className=' w-[50%] h-10 border bg-black hover:bg-gray-600 text-white rounded-xl'>SUBMIT</button>
                     </div>
                 </form>   
+                  :
+                  <form className='space-y-5   flex flex-col' action="">
+                    <div className='md:space-x-2 space-y-3 md:space-y-0'>
+                    <input  name='fname' value={address.fname} className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text" placeholder='FirstName' disabled />
+                    <input  name='lname' value={address.lname} className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text"placeholder='SecondName'  disabled/>
+                    </div>
+                    <div className=''>
+                    <textarea  name="address" value={address.address} className='border-2 p-2 text-sm w-[100%] md:w-[92%]' placeholder='Address' id=""  disabled/>
+                    </div>
+                    <div className='md:space-x-2 space-y-3'>
+                    <input name='city' value={address.city} className='border-2 p-2 text-sm w-[100%]  md:w-[45%]' type="text" placeholder='City/Town' disabled/>
+                    <input name='pincode' value={address.pincode} className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text" placeholder='Pincode' disabled/>
+                    </div>
+                    <div className='md:space-x-2 space-y-3'>
+                    <input name='mobile' value={address.mobile} className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text" placeholder='Mobile'  disabled/>
+                    <input name='email' value={address.email} className='border-2 p-2 text-sm w-[100%] md:w-[45%]' type="text" placeholder='Email'  disabled/>
+                    </div>
+                    <div>
+                    <button type='button'  onClick={handleEdit} className=' w-[50%] h-10 border bg-black hover:bg-gray-600 text-white rounded-xl'>Edit</button>
+                    </div>
+                </form>   
+                }
+
+                    
+
+
             </div> 
         </div>
         </div>

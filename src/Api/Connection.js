@@ -6,8 +6,6 @@ const PRODUCT_LIST="http://localhost:5000/products";
 const USERS_LIST="http://localhost:5000/users"
 
 
-
-
 export function getProducts(){
     return axios.get(PRODUCT_LIST)
 }
@@ -35,10 +33,22 @@ export async function getCartById(id){
    const res= await axios.get(`${USERS_LIST}/${id}`)
    return (res.data.cart)
 }
+export async function getAddressById(id){
+   const res= await axios.get(`${USERS_LIST}/${id}`)
+   return (res.data.address)
+}
 export function updateCartById(id,data){
     return axios.patch(`${USERS_LIST}/${id}`,data)
 }
+export function updateAddressById(id,data){
+    return axios.patch(`${USERS_LIST}/${id}`,data)
+}
 
-// export function deleteCartById(userId,productId){
-//     return axios.
-// }
+export async function getOrderById(id){
+    const res= await axios.get(`${USERS_LIST}/${id}`)
+    return (res.data.orders)
+}
+
+export function updateOrderById(id,data){
+    return axios.patch(`${USERS_LIST}/${id}`,data)
+}
