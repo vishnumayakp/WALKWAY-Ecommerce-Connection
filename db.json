@@ -19,9 +19,7 @@
       "name": "HRJ",
       "email": "hrj@gmail.com",
       "password": "123654",
-      "confirmPassword": "123654",
-      "cart": [],
-      "Product": []
+      "confirmPassword": "123654"
     },
     {
       "id": "7778",
@@ -30,6 +28,34 @@
       "password": "123654789",
       "confirmPassword": "123654789",
       "cart": [
+        {
+          "id": "14",
+          "name": "Advantage Court Lifestyle Hook-and-Loop Shoes",
+          "brand": "Adidas Originals",
+          "category": "kids",
+          "description": "Classic sneakers made in part with recycled materials.",
+          "price": 1840,
+          "stock": 10,
+          "rating": 4.5,
+          "available_sizes": [
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "image": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/e78777487b2e45248fbcae8c0099602d_9366/Advantage_Court_Lifestyle_Hook-and-Loop_Shoes_Black_GW6490_01_standard.jpg",
+          "images": [
+            "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/400425f0f0df4827ab6dae8c00998e92_9366/Advantage_Court_Lifestyle_Hook-and-Loop_Shoes_Black_GW6490_02_standard_hover.jpg",
+            "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f9b734a633e64f139fdaae8c0099a743_9366/Advantage_Court_Lifestyle_Hook-and-Loop_Shoes_Black_GW6490_03_standard.jpg",
+            "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ab46a8cfe91840debc80ae8c012583e1_9366/Advantage_Court_Lifestyle_Hook-and-Loop_Shoes_Black_GW6490_09_standard.jpg",
+            "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/5beac986d58e437b9d47ae8c0099d3ba_9366/Advantage_Court_Lifestyle_Hook-and-Loop_Shoes_Black_GW6490_05_standard.jpg"
+          ],
+          "count": 4,
+          "totalPrice": 7360
+        },
         {
           "id": "2",
           "name": "AIR FORCE 1 '07",
@@ -50,150 +76,11 @@
             "https://www.superkicks.in/cdn/shop/products/3-3_9d161233-ad69-4033-98d4-fb2516fc1999.jpg?v=1681121167&width=1946",
             "https://www.superkicks.in/cdn/shop/products/4-3_4bb09ae9-7ff1-4c6a-9040-fc0c3db279fc.jpg?v=1681121167&width=1946",
             "https://www.superkicks.in/cdn/shop/products/6-1_6f487d67-bc3b-454d-9c0f-381f03775a1b.jpg?v=1681121167&width=1946"
-          ]
-        },
-        {
-          "product": {
-            "id": "3",
-            "name": "AIR MORE UPTEMPO '96",
-            "brand": "Nike",
-            "category": "Men",
-            "description": "WHITE/MIDNIGHT NAVY-METALLIC GOLD",
-            "price": 15995,
-            "stock": 20,
-            "rating": 4.6,
-            "available_sizes": [
-              "5",
-              "6",
-              "7",
-              "8",
-              "9",
-              "10",
-              "11"
-            ],
-            "image": "https://www.superkicks.in/cdn/shop/files/1_cc492b95-4496-4e37-8000-2a16e8962e3b.jpg?v=1721729610&width=1946",
-            "images": [
-              "https://www.superkicks.in/cdn/shop/files/7_7a552ab3-2170-4b0a-a014-d7a84ce4de7f.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/3_040990d6-dc83-4569-9fd0-85c4817ce2b2.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/4_c8ecfb38-79e9-44c2-8923-6b5267934c19.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/5_12d43c7e-3509-452e-8932-a78fcd25cb1a.jpg?v=1721729610&width=1946"
-            ]
-          }
-        },
-        {
-          "product": {
-            "id": "3",
-            "name": "AIR MORE UPTEMPO '96",
-            "brand": "Nike",
-            "category": "Men",
-            "description": "WHITE/MIDNIGHT NAVY-METALLIC GOLD",
-            "price": 15995,
-            "stock": 20,
-            "rating": 4.6,
-            "available_sizes": [
-              "5",
-              "6",
-              "7",
-              "8",
-              "9",
-              "10",
-              "11"
-            ],
-            "image": "https://www.superkicks.in/cdn/shop/files/1_cc492b95-4496-4e37-8000-2a16e8962e3b.jpg?v=1721729610&width=1946",
-            "images": [
-              "https://www.superkicks.in/cdn/shop/files/7_7a552ab3-2170-4b0a-a014-d7a84ce4de7f.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/3_040990d6-dc83-4569-9fd0-85c4817ce2b2.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/4_c8ecfb38-79e9-44c2-8923-6b5267934c19.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/5_12d43c7e-3509-452e-8932-a78fcd25cb1a.jpg?v=1721729610&width=1946"
-            ]
-          }
-        },
-        {
-          "product": {
-            "id": "3",
-            "name": "AIR MORE UPTEMPO '96",
-            "brand": "Nike",
-            "category": "Men",
-            "description": "WHITE/MIDNIGHT NAVY-METALLIC GOLD",
-            "price": 15995,
-            "stock": 20,
-            "rating": 4.6,
-            "available_sizes": [
-              "5",
-              "6",
-              "7",
-              "8",
-              "9",
-              "10",
-              "11"
-            ],
-            "image": "https://www.superkicks.in/cdn/shop/files/1_cc492b95-4496-4e37-8000-2a16e8962e3b.jpg?v=1721729610&width=1946",
-            "images": [
-              "https://www.superkicks.in/cdn/shop/files/7_7a552ab3-2170-4b0a-a014-d7a84ce4de7f.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/3_040990d6-dc83-4569-9fd0-85c4817ce2b2.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/4_c8ecfb38-79e9-44c2-8923-6b5267934c19.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/5_12d43c7e-3509-452e-8932-a78fcd25cb1a.jpg?v=1721729610&width=1946"
-            ]
-          }
-        },
-        {
-          "product": {
-            "id": "3",
-            "name": "AIR MORE UPTEMPO '96",
-            "brand": "Nike",
-            "category": "Men",
-            "description": "WHITE/MIDNIGHT NAVY-METALLIC GOLD",
-            "price": 15995,
-            "stock": 20,
-            "rating": 4.6,
-            "available_sizes": [
-              "5",
-              "6",
-              "7",
-              "8",
-              "9",
-              "10",
-              "11"
-            ],
-            "image": "https://www.superkicks.in/cdn/shop/files/1_cc492b95-4496-4e37-8000-2a16e8962e3b.jpg?v=1721729610&width=1946",
-            "images": [
-              "https://www.superkicks.in/cdn/shop/files/7_7a552ab3-2170-4b0a-a014-d7a84ce4de7f.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/3_040990d6-dc83-4569-9fd0-85c4817ce2b2.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/4_c8ecfb38-79e9-44c2-8923-6b5267934c19.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/5_12d43c7e-3509-452e-8932-a78fcd25cb1a.jpg?v=1721729610&width=1946"
-            ]
-          }
-        },
-        {
-          "product": {
-            "id": "3",
-            "name": "AIR MORE UPTEMPO '96",
-            "brand": "Nike",
-            "category": "Men",
-            "description": "WHITE/MIDNIGHT NAVY-METALLIC GOLD",
-            "price": 15995,
-            "stock": 20,
-            "rating": 4.6,
-            "available_sizes": [
-              "5",
-              "6",
-              "7",
-              "8",
-              "9",
-              "10",
-              "11"
-            ],
-            "image": "https://www.superkicks.in/cdn/shop/files/1_cc492b95-4496-4e37-8000-2a16e8962e3b.jpg?v=1721729610&width=1946",
-            "images": [
-              "https://www.superkicks.in/cdn/shop/files/7_7a552ab3-2170-4b0a-a014-d7a84ce4de7f.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/3_040990d6-dc83-4569-9fd0-85c4817ce2b2.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/4_c8ecfb38-79e9-44c2-8923-6b5267934c19.jpg?v=1721729610&width=1946",
-              "https://www.superkicks.in/cdn/shop/files/5_12d43c7e-3509-452e-8932-a78fcd25cb1a.jpg?v=1721729610&width=1946"
-            ]
-          }
+          ],
+          "count": 1,
+          "totalPrice": 7495
         }
-      ],
-      "Product": []
+      ]
     }
   ],
   "products": [

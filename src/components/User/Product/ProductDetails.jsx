@@ -17,10 +17,20 @@ function ProductDetails() {
   },[id])
  
   async function handleAddCart(){
-   let oldData=await getCartById(userId)
-   let index=oldData.findIndex()
-    let updateData=[...oldData,{product}]
-    updateCartById(userId,{cart:updateData})
+   let currentCart=await getCartById(userId)
+   let updatedCart;
+
+   const currentIndex=currentCart.findIndex((item)=>item.id===product.id)
+   console.log(currentIndex);
+  if(currentIndex>=0){
+    updatedCart=currentCart.map((product,index)=>(
+      index===currentIndex? {...product,count:product.count+qty,totalPrice:product.price*(product.count+qty)}:product
+     ))
+  }else{
+    updatedCart=[...currentCart,{...product,count:qty,totalPrice:product.price*qty}]
+  }
+  updateCartById(userId,{cart:updatedCart})
+    
   }
   
   return (
@@ -66,7 +76,7 @@ function ProductDetails() {
           <div className=' w-32 justify-between border items-center flex h-10'>
             <button onClick={()=>setQty(qty==1? 1:qty-1)} className='text-3xl w-20 border-x-2 border-y-2 bg-gray-200'>-</button>
             <span className='w-20'>{qty}</span>
-            <button onClick={()=>setQty(qty+1)} className='text-3xl w-20 bg-gray-200 border-x-2 border-y-2'>+</button>
+            <button onClick={()=>setQty(qty+1)} className='text-3xl w-20 border-x-2 border-y-2 bg-gray-200'>+</button>
           </div>
           <button onClick={handleAddCart} className=' w-32 h-10 border bg-black hover:bg-gray-600 text-white rounded-3xl'>ADD TO CART</button>
           </div>

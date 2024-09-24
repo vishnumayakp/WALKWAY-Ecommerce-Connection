@@ -37,4 +37,8 @@ export async function getCartById(id){
 }
 export function updateCartById(id,data){
     return axios.patch(`${USERS_LIST}/${id}`,data)
- }
+}
+
+// export function deleteCartById(userId,productId){
+//     return axios.
+// }

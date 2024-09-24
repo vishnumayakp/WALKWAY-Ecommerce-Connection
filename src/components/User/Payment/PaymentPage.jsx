@@ -46,10 +46,21 @@ function PaymentPage() {
         <p className='font-bold  text-xl'>ORDER SUMMARY</p>
             <div className='space-y-5'>
                 <form className='space-y-5 flex flex-col' action="">
-                    <div className=' border-2 h-10 flex justify-between'>
+                    {/* <div className=' border-2 h-10 flex justify-between'>
                     <input className=' w-[45%] px-3' type="text" placeholder='Enter coupon code' />
                     <button className='bg-black text-white text-sm px-5'>APPLY COUPON</button>
+                    </div> */}
+                    <div className=' border-2 flex justify-between'>
+                     <div className='flex flex-col'>
+                     <span>name</span>
+                      <span>city</span>
+                      <span>pincode</span>
+                     </div>
+                     <div className='flex flex-col'>
+
+                     </div>
                     </div>
+
                 </form>
                 <div className='border p-5'>
                         <div className='flex justify-between'>

@@ -36,9 +36,7 @@ function Registration() {
             name: '',
             email: '',
             password: '',
-            confirmPassword: '',
-            cart:[],
-            Product:[],
+            confirmPassword: ''
           }}
           validationSchema={validationSchema}
           onSubmit={(values) => {

@@ -56,7 +56,7 @@ function Header() {
         </form>
         <h6 className="text-gray-300 hover:text-white">Shop</h6>
         <button onClick={handleAccount} className="text-gray-300 flex hover:text-white"><FaUser onClick={()=>navigate('/profile')} className='h-6 w-6'/>{userId?userData.name:"Account"} </button>
-        <button onClick={handleCart} className="text-gray-300 flex hover:text-white"><BsCart4 className='h-7 w-7'/></button>
+        <button onClick={handleCart} className="text-gray-300 flex hover:text-white"><BsCart4  className='h-7 w-7'/></button>
       </div>
       <div className='md:hidden text-white'>
         <button className='focus:outline-none'>☰</button>
