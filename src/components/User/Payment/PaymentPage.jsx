@@ -3,6 +3,7 @@ import product1 from '../../../assets/kids.png'
 import { getAddressById, getCartById, getOrderById, updateCartById, updateOrderById } from '../../../Api/Connection'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../USeContext/UserContext'
+import { toast } from 'react-toastify'
 
 function PaymentPage() {
   const[totalPrice,setTotalPrice]=useState(0)
@@ -31,16 +32,29 @@ function totalCartPrice(items){
  }
 
  async function handleOrder(){
- let currentOrder= await getOrderById(userId)
- let updatedOrder;
- const dataset={id:Date.now(),date:{day:d.toDateString(),time:d.toLocaleTimeString()},payment:payment,totalPrice:totalPrice,items:showProduct,address:address} 
- updatedOrder=[...currentOrder,dataset]
- updateOrderById(userId, {orders:updatedOrder})
- .then(()=>{
-  updateCartById(userId,{cart:[]})
-  .then(()=>setCartFlag(!cartFlag))
-  navigate('/showorder')
- })
+ if(address.mobile==='' || address===null){
+  
+  
+   toast.error('Must fill Address',{position:'bottom-right'})
+  
+ }else if(!payment){
+  toast.error('Must fill Payment option',{position:'bottom-right'})
+  console.log(address);
+ }else{
+  let currentOrder= await getOrderById(userId)
+  let updatedOrder;
+  const dataset={id:Date.now(),date:{day:d.toDateString(),time:d.toLocaleTimeString()},payment:payment,totalPrice:totalPrice,items:showProduct,address:address} 
+  updatedOrder=[...currentOrder,dataset]
+  updateOrderById(userId, {orders:updatedOrder})
+  .then(()=>{
+   updateCartById(userId,{cart:[]})
+   .then(()=>setCartFlag(!cartFlag))
+   toast.success('Order Placed',{position:'bottom-right'})
+   navigate('/showorder')
+  
+  })
+ }
+ 
  
  }
   return (
@@ -76,14 +90,27 @@ function totalCartPrice(items){
                     <input className=' w-[45%] px-3' type="text" placeholder='Enter coupon code' />
                     <button className='bg-black text-white text-sm px-5'>APPLY COUPON</button>
                     </div> */}
-                    <div className=' border-2 flex justify-between'>
-                    <div className=' p-3 w-[100%] text-left '>
-                  <h1>{address.fname} {address.lname}</h1>
-                  <h1>{address.city}</h1>
-                  <h1>{address.address} {address.pincode}</h1>
-                  <h1>{address.mobile}</h1>
-                  <h1>{address.email}</h1>
-                </div>
+                    <div className=' border-2 flex flex-col justify-between p-5'>
+                    <div className='flex justify-between w-full'>
+                    <h1 className='text-xl font-bold'>Address</h1>
+                      <button onClick={()=>navigate('/profile')} className='border-2 bg-black text-white text-xs w-10 p-1 rounded'>{address?"Edit":"Add"}</button>
+                      </div>
+                   {
+                    address?(
+                      <div className=' p-3 w-[100%] text-left '>
+                     
+                      <h1>{address.fname} {address.lname}</h1>
+                      
+                     
+                      <h1>{address.city}</h1>
+                      <h1>{address.address} {address.pincode}</h1>
+                      <h1>{address.mobile}</h1>
+                      <h1>{address.email}</h1>
+                    </div>
+                    ):(
+                      null
+                    )
+                   }
                      <div className='flex flex-col'>
 
                      </div>

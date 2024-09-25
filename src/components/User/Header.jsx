@@ -89,7 +89,7 @@ function Header() {
           value={search}
             type="text"
             placeholder="Search for shoes..."
-            className="h-8 p-2 pl-8 py-2 rounded-3xl border bg-gray-200 border-gray-300 focus:outline-none focus:ring-2 focus:black"
+            className="h-8 p-2 pl-8 hidden md:flex py-2 rounded-3xl border bg-gray-200 border-gray-300 focus:outline-none focus:ring-2 focus:black"
           />
         </form>
         {showModal?
@@ -106,12 +106,15 @@ function Header() {
         </div>:
         null
       }
+       <div className='relative flex space-x-5'>
         <button onClick={handleAccount} className="text-gray-300 flex hover:text-white"><FaUser onClick={()=>navigate('/profile')} className='h-6 w-6'/>{userId?userData.name:"Account"} </button>
         
+       
         <button onClick={handleCart} className="text-gray-300 flex hover:text-white">
           <BsCart4  className='h-7 w-7'/>
           <span className='absolute right-5 bg-white text-black rounded-2xl text-xs w-4'>{cartLength.length}</span>
         </button>
+        </div>
       </div>
       {/* <div className='md:hidden text-white'>
         <button className='focus:outline-none'>☰</button>

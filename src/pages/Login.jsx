@@ -15,6 +15,8 @@ function Login() {
     password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required')
   });
   const handleSubmit = (values) => {
+    console.log(values);
+    
     userDataValidate(values)
   };
 

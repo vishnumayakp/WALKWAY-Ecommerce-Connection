@@ -3,6 +3,7 @@ import product1 from '../../../assets/kids.png'
 import { AuthContext } from '../../../USeContext/UserContext'
 import { getAddressById, getCartById, updateCartById } from '../../../Api/Connection'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Cart() {
   const [qty,setQty]=useState()
@@ -54,6 +55,7 @@ function handleDelete(productId){
   .then((res)=>{
     setCart(res.data.cart)
     setCartFlag(!cartFlag)
+    toast.success('Item Removed from Cart',{position:'bottom-right'})
   })
  
 }
@@ -105,13 +107,19 @@ function handleDelete(productId){
         <h1 className='text-xl font-bold'>Address</h1>
         <button onClick={()=>navigate('/profile')} className='border-2 bg-black text-white text-xs w-10 p-1 rounded'>Edit</button>
         </div>
-                <div className=' w-[100%] text-left '>
+               {
+                address?(
+                  <div className=' w-[100%] text-left '>
                   <h1>{address.fname} {address.lname}</h1>
                   <h1>{address.city}</h1>
                   <h1>{address.address} {address.pincode}</h1>
                   <h1>{address.mobile}</h1>
                   <h1>{address.email}</h1>
                 </div>
+                ):(
+                  null
+                )
+               }
                 <hr className='w-[100%]  border-gray-300 text-xl'/>
 
                 <div className='p-5 w-[100%] space-y-10'>

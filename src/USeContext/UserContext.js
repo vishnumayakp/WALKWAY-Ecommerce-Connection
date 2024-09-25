@@ -9,18 +9,16 @@ export const AuthContext=createContext()
 export const UserAuth = ({children})=>{
     const id = localStorage.getItem('userId')
     const navigate=useNavigate()
-    const [user,setUser]=useState([])
+    // const [user,setUser]=useState([])
     const [error,setError]=useState('')
     const [userId,setUserId]=useState("");
     const [cartFlag, setCartFlag]=useState(false)
+    // useEffect(()=>{  
+    // },[])
 
-    useEffect(()=>{
-        getAllUsers()
-        .then((res)=>setUser(res.data))
-    },[])
-
-    function userDataValidate(data){
-        (user.find((value)=>{
+     function userDataValidate(data){
+       getAllUsers().then((user) => {
+        (user && user.data.find((value)=>{
             if(value.email===data.email && value.password === data.password){
                 localStorage.setItem('userId',value.id)
                 navigate('/')
@@ -30,6 +28,8 @@ export const UserAuth = ({children})=>{
                 
             }
         }))
+       })
+       
     }
 
     return (

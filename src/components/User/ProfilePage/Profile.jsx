@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { FaUser } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
-import { getAddressById, updateAddressById } from '../../../Api/Connection';
+import { getAddressById, getUserById, updateAddressById } from '../../../Api/Connection';
 function Profile() {
   const[address,setAddress]=useState({})
+  const [details,setDetails]=useState({})
   const navigate=useNavigate();
   const userId=localStorage.getItem('userId')
   function handleLogout(){
@@ -15,6 +16,8 @@ function Profile() {
     if(userId){
       getAddressById(userId)
       .then((res)=>setAddress(res))
+      getUserById(userId)
+      .then((res)=>setDetails(res.data))
     }
   },[])
 
@@ -49,9 +52,9 @@ function Profile() {
   return (
     <div className='w-[100%] flex justify-center flex-col mt-10 items-center  md:h-lvh'>
         <div className='w-[70%]  h-[70%] flex flex-col md:flex-row border-2 space-y-5'>
-            <div className='md:w-[40%] h-full flex flex-col justify-evenly items-center'>
+            <div className='md:w-[40%] h-full space-y-3 flex flex-col justify-evenly items-center'>
             <FaUser className=' h-20 w-20'/>
-            <div className='space-y-2 w-[100%] flex flex-col items-center'>
+            <div className='space-y-2 w-[100%] flex flex-col  items-center'>
             <div className='w-[70%]'>
                   <button className=' w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-xl'>User Details</button>
             </div>
@@ -71,17 +74,16 @@ function Profile() {
             <div className='flex flex-col space-y-5 p-2 items-center md:items-start'>
               <p className='text-xl'>Personal Information</p>
               <div className='flex flex-col  space-y-5 '>
-                <input  className='border-2' type="text" placeholder='Vishnumaya' />
-                <input className='border-2' type="text" placeholder='KP' />
+                <input  className='border-2' type="text" value={details.name} disabled />
               </div>
-              <p>Email Address</p>
+              <p>Email</p>
               <div className='flex  justify-evenly'>
-                <input className='border-2' type="email" placeholder='vishnu@gmail.com' />
+                <input className='border-2' type="email"  value={details.email} disabled />
               </div>
-              <p>Mobile Number</p>
+              {/* <p>Mobile</p>
               <div className='flex  justify-evenly'>
-                <input className='border-2' type="number" placeholder='9526790841' />
-              </div>
+                <input className='border-2' type="number" value={address.mobile} disabled />
+              </div> */}
             </div>
 
             <div className=' space-y-5  flex flex-col items-center'>

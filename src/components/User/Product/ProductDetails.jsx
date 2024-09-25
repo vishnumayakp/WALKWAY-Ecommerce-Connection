@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import product1 from '../../../assets/kids.png'
 import { getCartById, getProductById, updateCartById } from '../../../Api/Connection'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AuthContext } from '../../../USeContext/UserContext'
+import { toast } from 'react-toastify'
 
 function ProductDetails() {
+  const navigate=useNavigate()
   const userId=localStorage.getItem('userId')
   const [product,setProduct]=useState({})
   const [state,setState]=useState(0)
@@ -18,7 +20,8 @@ function ProductDetails() {
   },[id])
  
   async function handleAddCart(){
-   let currentCart=await getCartById(userId)
+   if(userId){
+    let currentCart=await getCartById(userId)
    let updatedCart;
 
    const currentIndex=currentCart.findIndex((item)=>item.id===product.id)
@@ -31,7 +34,14 @@ function ProductDetails() {
     updatedCart=[...currentCart,{...product,count:qty,totalPrice:product.price*qty}]
   }
   updateCartById(userId,{cart:updatedCart})
-  .then(()=>setCartFlag(!cartFlag))
+  .then(()=>{
+    setCartFlag(!cartFlag)
+    toast.success('Item Added to Cart',{position:'bottom-right'})
+  })
+   }else{
+    toast.error('Please Login',{position:'bottom-right'})
+    navigate('/login')
+   }
   }
   
   return (
