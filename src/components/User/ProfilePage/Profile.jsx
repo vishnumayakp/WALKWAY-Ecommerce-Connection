@@ -59,7 +59,7 @@ function Profile() {
                   <button className=' w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-xl'>Address</button>
             </div> */}
             <div className='w-[70%]'>
-                  <button className=' w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-xl'>Orders</button>
+                  <button onClick={()=>navigate('/showorder')} className=' w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-xl'>Orders</button>
             </div>
 
             <div className='w-[70%]'>

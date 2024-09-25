@@ -8,7 +8,6 @@ import Product from './User/Product';
 
 function Registration() {
   const navigate=useNavigate()
-  // Validation schema using Yup
   const validationSchema = Yup.object({
     name: Yup.string()
       .min(3, 'Must be at least 3 characters')
@@ -51,12 +50,7 @@ function Registration() {
             <Form>
               {/* Full Name */}
               <div className="mb-4">
-                <label
-                  className="block text-white text-sm font-medium mb-2"
-                  htmlFor="name"
-                >
-                  Full Name
-                </label>
+                <label className="block text-white text-sm font-medium mb-2"htmlFor="name"> Full Name</label>
                 <Field
                   id="name"
                   name="name"
@@ -67,18 +61,12 @@ function Registration() {
                 <ErrorMessage
                   name="name"
                   component="p"
-                  className="text-red-500 text-xs italic mt-1"
+                  className="text-red-500 text-xs mt-1"
                 />
               </div>
 
-              {/* Email */}
               <div className="mb-4">
-                <label
-                  className="block text-white text-sm font-medium mb-2"
-                  htmlFor="email"
-                >
-                  Email
-                </label>
+                <label cassName="block text-white text-sm font-medium mb-2" htmlFor="email">Emai</label>
                 <Field
                   id="email"
                   name="email"
@@ -89,18 +77,12 @@ function Registration() {
                 <ErrorMessage
                   name="email"
                   component="p"
-                  className="text-red-500 text-xs italic mt-1"
+                  className="text-red-500 text-xs  mt-1"
                 />
               </div>
 
-              {/* Password */}
               <div className="mb-4">
-                <label
-                  className="block text-white text-sm font-medium mb-2"
-                  htmlFor="password"
-                >
-                  Password
-                </label>
+                <label className="block text-white text-sm font-medium mb-2" htmlFor="password">Password</label>
                 <Field
                   id="password"
                   name="password"
@@ -111,18 +93,11 @@ function Registration() {
                 <ErrorMessage
                   name="password"
                   component="p"
-                  className="text-red-500 text-xs italic mt-1"
+                  className="text-red-500 text-xs  mt-1"
                 />
               </div>
-
-              {/* Confirm Password */}
               <div className="mb-6">
-                <label
-                  className="block text-white text-sm font-medium mb-2"
-                  htmlFor="confirmPassword"
-                >
-                  Confirm Password
-                </label>
+                <label className="block text-white text-sm font-medium mb-2" htmlFor="confirmPassword">Confirm Password</label>
                 <Field
                   id="confirmPassword"
                   name="confirmPassword"
@@ -133,27 +108,16 @@ function Registration() {
                 <ErrorMessage
                   name="confirmPassword"
                   component="p"
-                  className="text-red-500 text-xs italic mt-1"
+                  className="text-red-500 text-xs mt-1"
                 />
               </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-700 transition duration-300"
-              >
-                Register
-              </button>
+              <button type="submit" className="w-full py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-700 transition duration-300">Register</button>
             </Form>
           )}
         </Formik>
 
-        <p className="mt-4 text-center text-white text-sm">
-          Already have an account?{' '}
-          <a href="/login" className="text-gray-400 hover:underline">
-            Login
-          </a>
-        </p>
+        <p className="mt-4 text-center text-white text-sm">Already have an account?{' '}
+          <a href="/login" className="text-gray-400 hover:underline">Login</a></p>
       </div>
     </div>
   );

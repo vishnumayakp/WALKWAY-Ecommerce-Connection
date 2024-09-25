@@ -40,7 +40,7 @@ function ProductDetails() {
         <div className=' space-x-5 w-full p-10 md:h-[36rem] h-[40%] flex'>
           <div className='w-[25%] lg:h-[100%] space-y-4 scrollnone overflow-scroll md:p-7'>
           {product.images && product.images.map((value, index) => (
-              <div onClick={()=>setState(index)} key={index} className='w-full  bg-gray-200'>
+              <div onClick={()=>setState(index)} key={index} className='w-full transition duration-500 ease-in-out transform hover:scale-110  bg-gray-200'>
                 <img className='h-[100%] w-[100%]' src={value} alt={`Product Image ${index + 1}`} />
               </div>
             ))}

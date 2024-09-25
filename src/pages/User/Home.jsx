@@ -12,7 +12,7 @@ function Home() {
          <Header/>
           <div>
           <SlideShow/>
-          <Category/>
+          {/* <Category/> */}
           <Overview/>
           </div>
           </div>

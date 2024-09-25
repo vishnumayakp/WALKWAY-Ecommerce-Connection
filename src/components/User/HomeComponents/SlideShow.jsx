@@ -17,7 +17,7 @@ function SlideShow() {
   useEffect(()=>{
     setTimeout(()=>{
       setCount((pre)=>pre===images.length-1?0:pre+1)
-    },3000)
+    },5000)
   },[count])
     // const settings = {
     //     dots: true,
