@@ -10,6 +10,8 @@ import ProfilePage from './pages/User/ProfilePage';
 import Registration from './pages/Registration'
 import Login from './pages/Login'
 import Shop from './pages/User/Shop';
+import AdminRouter from './components/Admin/AdminRoute';
+import AdminDashboard from './pages/Admin/AdminDashboard';
 
 
 
@@ -17,8 +19,10 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/product/:id' element={<Product/>}/>
+
+    {/* User-Side Routes */}
+       <Route path='/' element={<Home/>}/>
+       <Route path='/product/:id' element={<Product/>}/>
        <Route path='/cart' element={<CartPage/>}/>
        <Route path='/payment' element={<Paymentsection/>}/>
        <Route path='/showorder' element={<OrderShowPage/>}/>
@@ -26,6 +30,9 @@ function App() {
        <Route path='/signup' element={<Registration/>}/>
        <Route path='/login' element={<Login/>}/>
        <Route path='/shop' element={<Shop/>}/>
+
+       {/* admin-Side Routes */}
+       <Route path='/admin' element={<AdminRouter><AdminDashboard/></AdminRouter>}/>
       </Routes>
     </div>
   );

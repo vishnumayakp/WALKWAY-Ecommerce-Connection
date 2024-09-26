@@ -7,7 +7,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate=useNavigate()
-  const {userDataValidate}=useContext(AuthContext)
+  const {userDataValidate,error}=useContext(AuthContext)
   const userId=localStorage.getItem('userId')
 
   const validationSchema = Yup.object({
@@ -16,7 +16,6 @@ function Login() {
   });
   const handleSubmit = (values) => {
     console.log(values);
-    
     userDataValidate(values)
   };
 

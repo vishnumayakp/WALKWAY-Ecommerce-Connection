@@ -17,23 +17,48 @@ export const UserAuth = ({children})=>{
     // },[])
 
      function userDataValidate(data){
+        let response;
        getAllUsers().then((user) => {
-        (user && user.data.find((value)=>{
-            if(value.email===data.email && value.password === data.password){
-                localStorage.setItem('userId',value.id)
-                navigate('/')
-                
+        if(data && user.data){
+            if(data.email==='admin@gmail.com' && data.password==='123456'){
+               localStorage.setItem('authToken' ,'adminToken')
+               localStorage.setItem('role' ,'admin')
+               localStorage.setItem('userId' ,'adminUserId')
+               navigate('/admin');
+               return;
             }else{
-                console.log('login failed');
-                
+                response= user.data.find((value)=>{   
+                    return value.email===data.email && value.password === data.password 
+                 });
             }
-        }))
+
+            if(response){
+                // setting token,role,and userid from the found user
+                localStorage.setItem('authToken', response.token);
+                localStorage.setItem('role', response.role)
+                localStorage.setItem('userId', response.id)
+
+                if(response.role==='admin'){
+                    navigate('/admin')
+                }else{
+                    navigate('/')
+                }
+            }else{
+                setError('Login Failed: Invalid email or password')
+                console.log('Login failed');
+                
+            }    
+        }
+       }).catch((error)=>{
+        setError('An error occurred during login login')
+        console.log('Login error',error);
+        
        })
        
     }
 
     return (
-        <AuthContext.Provider value={{userDataValidate,cartFlag,setCartFlag}}>
+        <AuthContext.Provider value={{userDataValidate,cartFlag,setCartFlag,error}}>
             {children}
         </AuthContext.Provider>
     )
