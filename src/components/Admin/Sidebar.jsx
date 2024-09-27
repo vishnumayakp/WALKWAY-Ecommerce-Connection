@@ -20,7 +20,7 @@ function Sidebar() {
     <div className="flex">
       {/* Sidebar */}
       <div
-        className={`h-full ${isOpen ? 'w-64' : 'w-20'} bg-white text-white border-r-2 fixed top-0 left-0 transition-all duration-300 overflow-hidden`}
+        className={`h-full ${isOpen ? 'w-64' : 'w-20'}  bg-white text-white z-0  border-r-2 top-0 left-0 transition-all duration-300 overflow-hidden`}
       >
         <div className="p-4">
           <div className="flex justify-between items-start">
@@ -38,36 +38,32 @@ function Sidebar() {
           </div>
           <div className='mt-4'>
             <ul className='space-y-6'>
-              <NavLink to="/admin" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-100 rounded w-full">
+              <NavLink to="/admin" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-200 hover:h-[2rem] rounded w-full">
                 <AiFillHome size={24} />
                 <span className={`${!isOpen && 'hidden'}`}>Dashboard</span>
               </NavLink>
               <li className="text-slate-600 text-sm uppercase mt-6">
                 {isOpen && "Product Management"}
               </li>
-              <NavLink to="/admin/categories" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-100 rounded w-full">
-                <BiSolidCategory size={24} />
-                <span className={`${!isOpen && 'hidden'}`}>Categories</span>
-              </NavLink>
-              <NavLink to="/admin/products" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-100 rounded w-full">
+              <NavLink to="/admin/products" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-200 hover:h-[2rem] rounded w-full">
                 <SiProducthunt size={24} />
                 <span className={`${!isOpen && 'hidden'}`}>Products</span>
               </NavLink>
               <li className="text-slate-600 text-sm uppercase mt-6">
                 {isOpen && "Order Management"}
               </li>
-              <NavLink to="/admin/orders" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-100 rounded w-full">
+              <NavLink to="/admin/orders" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-200 hover:h-[2rem] rounded w-full">
                 <FaShoppingCart size={24} />
                 <span className={`${!isOpen && 'hidden'}`}>All Orders</span>
               </NavLink>
               <li className="text-slate-600 text-sm uppercase mt-6">
                 {isOpen && "Customer Management"}
               </li>
-              <NavLink to="/admin/customers" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-100 rounded w-full">
+              <NavLink to="/admin/users" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-200 hover:h-[2rem] rounded w-full">
                 <IoMdPerson size={24} />
-                <span className={`${!isOpen && 'hidden'}`}>Customers</span>
+                <span className={`${!isOpen && 'hidden'}`}>users</span>
               </NavLink>
-              <NavLink to="/admin/reviews" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-100 rounded w-full">
+              <NavLink to="/admin/reviews" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-200 hover:h-[2rem] rounded w-full">
                 <FaRegStarHalfStroke size={24} />
                 <span className={`${!isOpen && 'hidden'}`}>Reviews</span>
               </NavLink>
@@ -78,8 +74,6 @@ function Sidebar() {
 
       {/* Main Content Area */}
       <div className={`flex-grow ml-${isOpen ? '64' : '20'} p-4 transition-all duration-300`}>
-        {/* Your main content here */}
-        <h1 className="text-gray-800">Main Content Area</h1>
       </div>
     </div>
   );

@@ -12,6 +12,12 @@ import Login from './pages/Login'
 import Shop from './pages/User/Shop';
 import AdminRouter from './components/Admin/AdminRoute';
 import AdminDashboard from './pages/Admin/AdminDashboard';
+import AllOrders from './pages/Admin/AllOrders';
+import UserReview from './pages/Admin/UserReview'
+import AllProducts from './pages/Admin/AllProducts';
+import AllUsers from './pages/Admin/AllUsers';
+import OrderDetails from './pages/Admin/OrderDetails';
+
 
 
 
@@ -33,6 +39,12 @@ function App() {
 
        {/* admin-Side Routes */}
        <Route path='/admin' element={<AdminRouter><AdminDashboard/></AdminRouter>}/>
+       <Route path='/admin/orders' element={<AllOrders/>}/>
+       <Route path='/admin/reviews' element={<UserReview/>}/>
+       <Route path='/admin/products' element={<AllProducts/>}/>
+       <Route path='/admin/users' element={<AllUsers/>}/>
+       <Route path='/admin/details' element={<OrderDetails/>}/>
+  
       </Routes>
     </div>
   );
