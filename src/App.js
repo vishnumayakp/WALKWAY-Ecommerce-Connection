@@ -17,6 +17,8 @@ import UserReview from './pages/Admin/UserReview'
 import AllProducts from './pages/Admin/AllProducts';
 import AllUsers from './pages/Admin/AllUsers';
 import OrderDetails from './pages/Admin/OrderDetails';
+import ProductView from './pages/Admin/ProductView';
+import AddProducts from './pages/Admin/AddProducts';
 
 
 
@@ -44,6 +46,8 @@ function App() {
        <Route path='/admin/products' element={<AllProducts/>}/>
        <Route path='/admin/users' element={<AllUsers/>}/>
        <Route path='/admin/details' element={<OrderDetails/>}/>
+       <Route path='/admin/pro-details' element={<ProductView/>}/>
+       <Route path='/admin/addproduct' element={<AddProducts/>}/>
   
       </Routes>
     </div>

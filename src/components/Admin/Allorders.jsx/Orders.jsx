@@ -3,8 +3,10 @@ import React from 'react'
 function Orders() {
   return (
     <div  className="p-8 bg-gray-100 min-h-screen">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-semibold">All Orders</h2>
+    </div>
     <div class="bg-white shadow-md overflow-scroll scrollnone w-[97%] mt-10 rounded-lg p-6">
-  <h2 class="text-lg font-semibold mb-4">All Orders</h2>
   <table class="min-w-full bg-white border border-gray-200">
     <thead>
       <tr>

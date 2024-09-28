@@ -1,11 +1,25 @@
 import React from 'react'
 import { FaUserTie } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 function Users() {
   return (
     <div  className="p-8 bg-gray-100 min-h-screen">
-    <div class="bg-white shadow-md overflow-scroll scrollnone w-[97%] mt-10 rounded-lg p-6">
-  <h2 class="text-lg font-semibold mb-4">All Users</h2>
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-semibold">Order Details</h2>
+    </div>
+   
+    <div class="bg-white shadow-md overflow-scroll space-y-5 scrollnone w-[97%] mt-10 rounded-lg p-6">
+    <div className="flex border w-[18rem] items-center  mb-4 md:mb-0">
+        <input 
+          type="text" 
+          placeholder="Search by user name" 
+          className="w-full md:w-auto p-2  rounded-lg focus:outline-none "
+        />
+        <button  className="bg-blue-500 flex items-center space-x-3 hover:bg-blue-400 text-white py-2 px-4">
+        <FaSearch/><span>Search</span>
+        </button>
+      </div>
   <table class="min-w-full bg-white border border-gray-200">
     <thead>
       <tr>
