@@ -4,10 +4,19 @@ import { FaSearch } from "react-icons/fa";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { getProductById, getProducts } from '../../../Api/Connection';
 import { useParams } from 'react-router-dom';
+import AddingProducts from '../AddProducts/AddingProducts';
 
 function TotalProducts() {
 
   const [products,setProducts]=useState([])
+  const [isModal,setIsModal]=useState(false)
+  const openModal=()=>{
+    setIsModal(true)
+  }
+
+  const closeModal=()=>{
+    setIsModal(false)
+  }
 
     useEffect(()=>{
       getProducts()
@@ -34,7 +43,7 @@ function TotalProducts() {
       </div>
 
       {/* Create New Button */}
-      <button className="bg-blue-500 hover:bg-blue-400 flex items-center space-x-3 text-white py-2 px-4">
+      <button onClick={openModal} className="bg-blue-500 hover:bg-blue-400 flex items-center space-x-3 text-white py-2 px-4">
       <BsFillPlusCircleFill /> <span>Create New</span>
       </button>
     
@@ -47,7 +56,7 @@ function TotalProducts() {
         <th class="py-2 px-4 border-b">Thumbnail</th>
         <th class="py-2 px-4 border-b">Product Name</th>
         <th class="py-2 px-4 border-b">Price</th>
-        <th class="py-2 px-4 border-b">Discount price</th>
+        <th class="py-2 px-4 border-b">Stock</th>
         <th class="py-2 px-4 border-b">Actions</th>
       </tr>
     </thead>
@@ -58,8 +67,8 @@ function TotalProducts() {
       <td class="py-2 px-4 border-b">{value.id}</td>
         <td class="py-2 flex justify-center border-b"><img className='h-[5rem] w-[5rem]' src={value.image} alt="" /></td>
         <td class="py-2 px-4 border-b">{value.name}</td>
-        <td class="py-2 px-4 border-b">₹ {value.price}</td>
-        <td class="py-2 px-4 border-b">₹ 999</td>
+        <td class="py-2 px-4 w-[20%] border-b">₹ {value.price}</td>
+        <td class="py-2 px-4 border-b">{value.stock}</td>
         <td class="py-2 px-4 w-[30%] border-b md:space-x-2"><button className='border bg-green-600 text-white rounded p-1 w-20'>View</button><button className='border bg-yellow-400 text-white rounded p-1 w-20'>Edit</button><button className='border bg-red-600 text-white rounded p-1 w-20'>Del</button></td>
       </tr>
         )
@@ -67,6 +76,7 @@ function TotalProducts() {
     </tbody>
   </table>
 </div>
+{isModal && <AddingProducts closeModal={closeModal}/>}
 </div>
   )
 }

@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import kids from '../../../assets/kids.png'
+import AddProducts from '../../../pages/Admin/AddProducts'
+import AddingProducts from '../AddProducts/AddingProducts'
 
 function ProductDetails() {
+ 
   return (
     <div className='flex  justify-center lg:p-5'>
       <div className='md:w-[80%]  w-full xl:flex-row  p-5 shadow-lg border space-x-5  flex flex-col'>
@@ -24,10 +27,11 @@ function ProductDetails() {
            <p>⭐ </p>
             </div>
           <div className='flex'>
-          <button className='border bg-yellow-500 text-white rounded p-2 w-20'>Edit</button>
+          <button  className='border bg-yellow-500 text-white rounded p-2 w-20'>Edit</button>
           </div>
         </div>
       </div>
+   
     </div>
   )
 }

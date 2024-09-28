@@ -52,3 +52,9 @@ export async function getOrderById(id){
 export function updateOrderById(id,data){
     return axios.patch(`${USERS_LIST}/${id}`,data)
 }
+
+// Admin-side
+
+export function AddProductDetails(data){
+    return axios.post (PRODUCT_LIST,data)
+}
