@@ -58,3 +58,11 @@ export function updateOrderById(id,data){
 export function AddProductDetails(data){
     return axios.post (PRODUCT_LIST,data)
 }
+
+export function updateProductById(id,data){
+    return axios.patch(`${PRODUCT_LIST}/${id}`,data)
+}
+
+export function deleteProductById(id){
+    return axios.delete(`${PRODUCT_LIST}/${id}`)
+}
