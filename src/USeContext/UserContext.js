@@ -2,6 +2,7 @@ import React, { Children, createContext, useEffect } from "react";
 import { useState } from "react";
 import { getAllUsers, getCartById, getSignUp } from "../Api/Connection";
 import { useNavigate } from "react-router-dom";
+import {toast} from 'react-toastify'
 
 
 export const AuthContext=createContext()
@@ -33,20 +34,22 @@ export const UserAuth = ({children})=>{
             }
 
             if(response){
-                // setting token,role,and userid from the found user
+                if(response.status){
+                    toast.error("Your Account is blocked",{position:'top-center'})
+                }else{
+                    // setting token,role,and userid from the found user
                 localStorage.setItem('authToken', response.token);
                 localStorage.setItem('role', response.role)
                 localStorage.setItem('userId', response.id)
-
                 if(response.role==='admin'){
                     navigate('/admin')
                 }else{
                     navigate('/')
                 }
+                }
             }else{
                 setError('Login Failed: Invalid email or password')
-                console.log('Login failed');
-                
+                toast.error("Incorrect email or Password",{position:'top-center'})   
             }    
         }
        }).catch((error)=>{

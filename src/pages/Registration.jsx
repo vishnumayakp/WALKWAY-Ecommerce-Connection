@@ -34,6 +34,7 @@ function Registration() {
           initialValues={{
             name: '',
             email: '',
+            regdate:'',
             password: '',
             confirmPassword: '',
             cart:[],
@@ -48,7 +49,6 @@ function Registration() {
         >
           {() => (
             <Form>
-              {/* Full Name */}
               <div className="mb-4">
                 <label className="block text-white text-sm font-medium mb-2"htmlFor="name"> Full Name</label>
                 <Field
@@ -66,7 +66,7 @@ function Registration() {
               </div>
 
               <div className="mb-4">
-                <label cassName="block text-white text-sm font-medium mb-2" htmlFor="email">Emai</label>
+                <label cassName="block text-white text-sm font-medium mb-2" htmlFor="email">Email</label>
                 <Field
                   id="email"
                   name="email"
@@ -76,6 +76,22 @@ function Registration() {
                 />
                 <ErrorMessage
                   name="email"
+                  component="p"
+                  className="text-red-500 text-xs  mt-1"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label cassName="block text-white text-sm font-medium mb-2" htmlFor="text">Registration Date</label>
+                <Field
+                  id="date"
+                  name="regdate"
+                  type="date"
+                  placeholder="Enter Registration Date"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <ErrorMessage
+                  name="regdate"
                   component="p"
                   className="text-red-500 text-xs  mt-1"
                 />

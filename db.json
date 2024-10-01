@@ -6,6 +6,7 @@
       "email": "vm@gmail.com",
       "password": "123456",
       "confirmPassword": "123456",
+      "status": true,
       "cart": [
         {
           "id": "3",
@@ -53,8 +54,94 @@
       "email": "abhay@gmail.com",
       "password": "1234567",
       "confirmPassword": "1234567",
+      "status": false,
       "cart": [],
-      "orders": [],
+      "orders": [
+        {
+          "id": 1727765254479,
+          "date": {
+            "day": "Tue Oct 01 2024",
+            "time": "12:17:32 PM"
+          },
+          "payment": "Paypal",
+          "totalPrice": 108173,
+          "items": [
+            {
+              "id": "4",
+              "name": "AIR JORDAN 5 RETRO 'EL GITRO'",
+              "brand": "Jordan",
+              "category": "Men",
+              "description": "SAIL/DARK PONY-COCONUT MILK-PINE GREEN",
+              "price": 19295,
+              "stock": "15",
+              "rating": 5,
+              "available_sizes": [
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ],
+              "image": "https://www.superkicks.in/cdn/shop/files/2_3e3631ce-b6d4-4795-a556-f13dcc009dcd.jpg?v=1726572074&width=600",
+              "images": [
+                "https://www.superkicks.in/cdn/shop/files/5_d069c4ba-6d25-407a-9e47-c210c80961a3.jpg?v=1726572074&width=600",
+                "https://www.superkicks.in/cdn/shop/files/4_abb25b99-e610-4545-84d0-d5c22170506c.jpg?v=1726572074&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/9_f5df14e2-dc54-4597-984e-086d359cc607.jpg?v=1726572074&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/6_5d2fbb9f-8ee5-4f19-9221-6bcdffcdf8e9.jpg?v=1726572074&width=1946"
+              ],
+              "count": 4,
+              "totalPrice": 77180
+            },
+            {
+              "id": "11",
+              "name": "WMN'S AIR FORCE 1 SAGE LOW",
+              "brand": "Nike",
+              "category": "women",
+              "description": "WHITE/WHITE-WHITE",
+              "price": 8995,
+              "stock": 10,
+              "rating": 4.5,
+              "available_sizes": [
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ],
+              "image": "https://www.superkicks.in/cdn/shop/files/1_1a346368-9e41-4bdd-97f1-a6681adcdd97.jpg?v=1715174857&width=1946",
+              "images": [
+                "https://www.superkicks.in/cdn/shop/files/2_7029be05-cb4a-4447-84e0-2358c117d746.jpg?v=1715174857&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/2024-ecoms_27857b64-6307-4a7a-bcb3-bf048fec69ca.jpg?v=1715174857&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/4_89b4cecf-d931-466e-80a1-e15b57dfb18c.jpg?v=1715174857&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/1_1a346368-9e41-4bdd-97f1-a6681adcdd97.jpg?v=1715174857&width=1946"
+              ],
+              "count": 1,
+              "totalPrice": 8995
+            },
+            {
+              "id": "67a7",
+              "name": "SAMBA OG",
+              "price": "10999",
+              "description": "CORE BLACK/CLOUD WHITE/GUM",
+              "stock": "30",
+              "image": "https://www.superkicks.in/cdn/shop/files/1_06972bb5-7fab-4ae0-acbc-c77a6f0af838.jpg?v=1692875647&width=1946",
+              "images": [
+                "https://www.superkicks.in/cdn/shop/files/2_f06b772e-6f43-4495-8dc7-de85aeacdeab.jpg?v=1692875647&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/5_e57c6faf-5364-4d36-a053-984fa3cc4207.jpg?v=1692875647&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/4..jpg?v=1692875647&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/6_4408358d-dbde-4a06-9f73-7fd8c853a51e.jpg?v=1692875647&width=1946"
+              ],
+              "count": 2,
+              "totalPrice": 21998
+            }
+          ],
+          "address": []
+        }
+      ],
       "address": []
     },
     {
@@ -63,9 +150,99 @@
       "email": "hrj@gmail.com",
       "password": "123456789",
       "confirmPassword": "123456789",
+      "status": false,
       "cart": [],
-      "orders": [],
-      "address": []
+      "orders": [
+        {
+          "id": 1727765349651,
+          "date": {
+            "day": "Tue Oct 01 2024",
+            "time": "12:19:08 PM"
+          },
+          "payment": "Cash on delivery",
+          "totalPrice": 86763,
+          "items": [
+            {
+              "id": "d68b",
+              "name": "ZION WILLIAMSON ZION 3 PF",
+              "price": "12795.00",
+              "description": "HALF BLUE/UNIVERSITY BLUE",
+              "stock": "18",
+              "image": "https://www.superkicks.in/cdn/shop/files/3_cc36e5b9-0e56-438e-ab3f-e4b522db5127.jpg?v=1727175411&width=1946",
+              "images": [
+                "https://www.superkicks.in/cdn/shop/files/2_b3c07599-6773-48f1-bdf9-730fbc0e451d.jpg?v=1727175411&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/5_6ca82099-7695-4a10-9d73-e4c298230b44.jpg?v=1727175411&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/4_621bdcc9-0488-4cf8-895a-778df77fc5ef.jpg?v=1727175411&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/9_dd711c66-c6e3-44de-9b27-902d7464f7ab.jpg?v=1727175411&width=1946"
+              ],
+              "count": 3,
+              "totalPrice": 38385
+            },
+            {
+              "id": "0a78",
+              "name": "BLAZER MID'77",
+              "price": "9295",
+              "description": "JUMBO BLACK\n",
+              "stock": "34",
+              "image": "https://www.superkicks.in/cdn/shop/files/1_9adf6f04-e5bd-4cc3-9a3f-6cc3ebdc061f.jpg?v=1715407039&width=1946",
+              "images": [
+                "https://www.superkicks.in/cdn/shop/files/2_a54e70e7-45b0-4a1d-a914-bad6ee616e0d.jpg?v=1715407039&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/3_236972f2-9eae-44b0-a3e0-602bc9395bd3.jpg?v=1715407039&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/6_55298290-9ac6-45b5-b529-f783fb43a939.jpg?v=1715407039&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/4_4457f054-06ab-4111-809d-ddcd87b89dd2.jpg?v=1715407039&width=1946"
+              ],
+              "count": 4,
+              "totalPrice": 37180
+            },
+            {
+              "id": "15",
+              "name": "Grand Court x Disney Shoes Kids",
+              "brand": "Nike",
+              "category": "kids",
+              "description": "Disney-inspired shoes with a strap, made in part with recycled materials.",
+              "price": 5599,
+              "stock": 10,
+              "rating": 4.5,
+              "available_sizes": [
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ],
+              "image": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/75b6aac658b34111855b912ac38fcbe3_9366/Grand_Court_x_Disney_Shoes_Kids_White_IF0926_01_standard.jpg",
+              "images": [
+                "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7219b998515b46ed968c976fba8d78c3_9366/Grand_Court_x_Disney_Shoes_Kids_White_IF0926_02_standard_hover.jpg",
+                "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/a04413bf09cf4d4dab67f9138e537297_9366/Grand_Court_x_Disney_Shoes_Kids_White_IF0926_04_standard.jpg",
+                "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/34bf4e498abb485b83a5592423e5837b_9366/Grand_Court_x_Disney_Shoes_Kids_White_IF0926_05_standard.jpg",
+                "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/06166a551541438f9e6a2164cf7d942c_9366/Grand_Court_x_Disney_Shoes_Kids_White_IF0926_41_detail.jpg"
+              ],
+              "count": 2,
+              "totalPrice": 11198
+            }
+          ],
+          "address": {
+            "fname": "sdaf",
+            "lname": "efrgw",
+            "address": "retyjl",
+            "city": "tj;",
+            "pincode": "yjguilo",
+            "mobile": "tryhtyu",
+            "email": "lilo;"
+          }
+        }
+      ],
+      "address": {
+        "fname": "sdaf",
+        "lname": "efrgw",
+        "address": "retyjl",
+        "city": "tj;",
+        "pincode": "yjguilo",
+        "mobile": "tryhtyu",
+        "email": "lilo;"
+      }
     },
     {
       "id": "1f55",
@@ -73,6 +250,7 @@
       "email": "vm@gmail.com",
       "password": "1234567",
       "confirmPassword": "1234567",
+      "status": false,
       "cart": [],
       "orders": [],
       "address": []
@@ -85,7 +263,8 @@
       "confirmPassword": "dev@123",
       "cart": [],
       "orders": [],
-      "address": []
+      "address": [],
+      "status": false
     },
     {
       "id": "3d5f",
@@ -179,82 +358,23 @@
         }
       ],
       "orders": [],
+      "address": [],
+      "status": false
+    },
+    {
+      "id": "5c90",
+      "name": "Vishnumaya KP",
+      "email": "vm55@gmail.com",
+      "regdate": "2024-10-01",
+      "password": "1234567",
+      "confirmPassword": "1234567",
+      "status": false,
+      "cart": [],
+      "orders": [],
       "address": []
     }
   ],
   "products": [
-    {
-      "id": "1",
-      "name": "WMN'S AIR FORCE 1 '07 NEXT NATURE",
-      "brand": "Nike",
-      "category": "Men",
-      "description": "CORE WHITE/CORE BLACK/GUM",
-      "price": " 8195",
-      "stock": "10",
-      "rating": 4.5,
-      "available_sizes": [
-        "5",
-        "6",
-        "7",
-        "8",
-        "9"
-      ],
-      "image": "https://www.superkicks.in/cdn/shop/files/3_6b673f36-8803-4d11-8e8a-d68907fd4d70.jpg?v=1727175507&width=1946",
-      "images": [
-        "https://www.superkicks.in/cdn/shop/files/6_991bb0b5-9a94-4856-a646-6845cdcbcf80.jpg?v=1727175507&width=1946",
-        "https://www.superkicks.in/cdn/shop/files/1_cd58dbed-0e93-4ce0-9316-26352f561580.jpg?v=1727175507&width=1946",
-        "https://www.superkicks.in/cdn/shop/files/4_102423f3-942a-4188-80a5-27fe3da1a78f.jpg?v=1727175507&width=1946",
-        "https://www.superkicks.in/cdn/shop/files/7_9ce1b387-04ab-4c0b-bcd4-a5ba52209a71.jpg?v=1727175507&width=1946"
-      ]
-    },
-    {
-      "id": "2",
-      "name": "AIR FORCE 1 '07",
-      "brand": "Nike",
-      "category": "Men",
-      "description": "TRIPLE WHITE",
-      "price": 7495,
-      "stock": "17",
-      "rating": 3.5,
-      "available_sizes": [
-        "5",
-        "6",
-        "7"
-      ],
-      "image": "https://www.superkicks.in/cdn/shop/products/1-3_c4a86ac6-b85f-46f2-96fa-cffc3ce36e53.jpg?v=1681121167&width=1946",
-      "images": [
-        "https://www.superkicks.in/cdn/shop/products/2-3_04890a75-cb2d-42fa-adff-7652852d6bcf.jpg?v=1681121167&width=1946",
-        "https://www.superkicks.in/cdn/shop/products/3-3_9d161233-ad69-4033-98d4-fb2516fc1999.jpg?v=1681121167&width=1946",
-        "https://www.superkicks.in/cdn/shop/products/4-3_4bb09ae9-7ff1-4c6a-9040-fc0c3db279fc.jpg?v=1681121167&width=1946",
-        "https://www.superkicks.in/cdn/shop/products/6-1_6f487d67-bc3b-454d-9c0f-381f03775a1b.jpg?v=1681121167&width=1946"
-      ]
-    },
-    {
-      "id": "3",
-      "name": "AIR MORE UPTEMPO '96",
-      "brand": "Nike",
-      "category": "Men",
-      "description": "WHITE/MIDNIGHT NAVY-METALLIC GOLD",
-      "price": 15995,
-      "stock": "26",
-      "rating": 4.6,
-      "available_sizes": [
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11"
-      ],
-      "image": "https://www.superkicks.in/cdn/shop/files/1_cc492b95-4496-4e37-8000-2a16e8962e3b.jpg?v=1721729610&width=1946",
-      "images": [
-        "https://www.superkicks.in/cdn/shop/files/7_7a552ab3-2170-4b0a-a014-d7a84ce4de7f.jpg?v=1721729610&width=1946",
-        "https://www.superkicks.in/cdn/shop/files/3_040990d6-dc83-4569-9fd0-85c4817ce2b2.jpg?v=1721729610&width=1946",
-        "https://www.superkicks.in/cdn/shop/files/4_c8ecfb38-79e9-44c2-8923-6b5267934c19.jpg?v=1721729610&width=1946",
-        "https://www.superkicks.in/cdn/shop/files/5_12d43c7e-3509-452e-8932-a78fcd25cb1a.jpg?v=1721729610&width=1946"
-      ]
-    },
     {
       "id": "4",
       "name": "AIR JORDAN 5 RETRO 'EL GITRO'",
@@ -612,7 +732,7 @@
       "id": "0a78",
       "name": "BLAZER MID'77",
       "price": "9295",
-      "description": "JUMBO BLACK\n",
+      "description": "JUMBO BLACK",
       "stock": "34",
       "image": "https://www.superkicks.in/cdn/shop/files/1_9adf6f04-e5bd-4cc3-9a3f-6cc3ebdc061f.jpg?v=1715407039&width=1946",
       "images": [

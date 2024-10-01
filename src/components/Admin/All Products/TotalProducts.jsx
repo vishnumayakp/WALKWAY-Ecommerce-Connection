@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaSearch } from "react-icons/fa";
 import { BsFillPlusCircleFill } from "react-icons/bs";
-import { getProductById, getProducts } from '../../../Api/Connection';
+import { deleteProductById, getProductById, getProducts } from '../../../Api/Connection';
 import AddingProducts from '../AddProducts/AddingProducts';
 import EditPro from '../EditProducts/EditPro';
 import { useNavigate } from 'react-router-dom';
@@ -36,10 +36,20 @@ function TotalProducts({id}) {
     },[editModal,isModal])
 
     const handleProductClick=(id)=>{
-      navigate(`/admin/pro-details/${id}`)
-     
-      
+      navigate(`/admin/pro-details/${id}`) 
     }
+
+
+    const handleDelete =async(id)=>{
+      try{
+        await deleteProductById(id)
+        setProducts(products.filter(products => products.id!== id))
+        alert("product deleted suucessfully")
+      }catch(error){
+        alert("Failed to delete the product")
+      }
+    }
+
   return (
     <div  className="p-8 bg-gray-100 min-h-screen">
       <div className="flex justify-between items-center mb-6">
@@ -87,7 +97,9 @@ function TotalProducts({id}) {
         <td className="py-2 px-4 border-b">{value.name}</td>
         <td className="py-2 px-4 w-[20%] border-b">₹ {value.price}</td>
         <td className="py-2 px-4 border-b">{value.stock}</td>
-        <td className="py-2 px-4 w-[30%] border-b md:space-x-2"><button onClick={()=>handleProductClick(value.id)} className='border bg-green-600 text-white rounded p-1 w-20'>View</button><button onClick={()=>openEditModal(value.id)} className='border bg-yellow-400 text-white rounded p-1 w-20'>Edit</button><button className='border bg-red-600 text-white rounded p-1 w-20'>Del</button></td>
+        <td className="py-2 px-4 w-[30%] border-b md:space-x-2"><button onClick={()=>handleProductClick(value.id)} className='border bg-green-600 text-white rounded p-1 w-20'>View</button>
+        <button onClick={()=>openEditModal(value.id)} className='border bg-yellow-400 text-white rounded p-1 w-20'>Edit</button>
+        <button onClick={()=>handleDelete(value.id)} className='border bg-red-600 text-white rounded p-1 w-20'>Del</button></td>
       </tr>
         )
       })}

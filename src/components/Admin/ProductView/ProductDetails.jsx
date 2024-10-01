@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
-import { getProductById } from '../../../Api/Connection'
+import { deleteProductById, getProductById, getProducts } from '../../../Api/Connection'
 import EditPro from '../EditProducts/EditPro'
 
 function ProductDetails() {
   const {id}=useParams()
     const [details,setDetails]=useState({})
+    const [products,setProducts]=useState([])
     const[images,setImages]=useState([])
     const [editModal,setEditModal]=useState(false)
     const [pId,setPId]=useState("");
@@ -21,20 +22,44 @@ function ProductDetails() {
       setEditModal(false)
     }
 
+
+
     useEffect(()=>{
         const fetchProductDetails=async()=>{
             try{
                 const res=await getProductById(id)
                 setDetails(res.data)
-                setImages(res.data.images)
-                
+                setImages(res.data.images)    
             }catch(error){
-                console.log("can't fetch the data",error);
-                
+                console.log("can't fetch the data",error);   
             }
         }
         fetchProductDetails()
     },[id])
+
+    useEffect(()=>{
+      const fetchProducts=async()=>{
+        try{
+          const res=await getProducts();
+          setProducts(res.data)
+        }catch(error){
+          console.log(("failed to fetch products"));
+          
+        }
+      }
+      fetchProducts()
+    },[])
+
+    const handleDelete=async(id)=>{
+      try{
+        await deleteProductById(id);
+        alert('product deleted')
+      }catch(error){
+        console.log("failed to delete product");
+        alert("failed to delete product")
+        
+      }
+    }
  
   return (
     <div className='flex  justify-center lg:p-5'>
@@ -60,7 +85,8 @@ function ProductDetails() {
            <p>⭐ {details.rating}</p>
             </div>
           <div className='flex'>
-          <button onClick={()=>openEditModal(details.id)} className='border bg-yellow-500 text-white rounded p-2 w-20'>Edit</button><button  className='border bg-red-500 text-white rounded p-2 w-20'>Del</button>
+          <button onClick={()=>openEditModal(details.id)} className='border bg-yellow-500 text-white rounded p-2 w-20'>Edit</button>
+          <button onClick={()=>handleDelete(details().id)}  className='border bg-red-500 text-white rounded p-2 w-20'>Del</button>
           </div>
         </div>
       </div>

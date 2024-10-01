@@ -66,3 +66,7 @@ export function updateProductById(id,data){
 export function deleteProductById(id){
     return axios.delete(`${PRODUCT_LIST}/${id}`)
 }
+
+export function updateUserStatus(id,data){
+    return axios.patch(`${USERS_LIST}/${id}`,{status:data})
+}

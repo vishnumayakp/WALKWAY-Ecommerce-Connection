@@ -1,6 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getAllUsers, getProducts } from '../../../Api/Connection'
 
 function AdminHome() {
+  const [Products,setproducts]=useState([])
+  const [users,setusers]=useState([])
+
+  useEffect(()=>{
+    const fetchDetails=async()=>{
+      try{
+        const res=await getProducts()
+        setproducts(res.data)
+        const user=await getAllUsers()
+        setusers(user.data)
+    
+      }catch(error){
+        console.log("can't fetch data");
+        
+      }
+      
+    }
+    fetchDetails()
+  })
+
+
+
+
+  const totalProducts=Products&& Products.length ? Products.length:0
+  const totalUsers=users&&users.length? users.length:0 
+
+
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
     <h1 className="text-3xl font-semibold mb-8">Admin Dashboard</h1>
@@ -14,7 +42,7 @@ function AdminHome() {
         </div>
         <div>
           <h2 className="text-xl font-semibold">Total Products</h2>
-          <p className="text-2xl font-bold">1,234</p>
+          <p className="text-2xl font-bold">{totalProducts}</p>
         </div>
       </div>
 
@@ -25,7 +53,7 @@ function AdminHome() {
         </div>
         <div>
           <h2 className="text-xl font-semibold">Total Orders</h2>
-          <p className="text-2xl font-bold">567</p>
+          <p className="text-2xl font-bold"></p>
         </div>
       </div>
 
@@ -36,7 +64,7 @@ function AdminHome() {
         </div>
         <div>
           <h2 className="text-xl font-semibold">Total Customers</h2>
-          <p className="text-2xl font-bold">789</p>
+          <p className="text-2xl font-bold">{totalUsers}</p>
         </div>
       </div>
     </div>
