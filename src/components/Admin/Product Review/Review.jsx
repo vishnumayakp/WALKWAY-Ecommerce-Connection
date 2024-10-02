@@ -25,7 +25,7 @@ function Review() {
       <tr>
         <th className="py-2 px-4 border-b">Thumbnail</th>
         <th className="py-2 px-4 border-b">Product Name</th>
-        <th className="py-2 px-4 border-b">Review</th>
+        <th className="py-2 px-4 border-b">Brand</th>
         <th className="py-2 px-4 border-b">Rating</th>
       </tr>
     </thead>
@@ -35,7 +35,7 @@ function Review() {
         <tr className="hover:bg-gray-50 w-[100%]">
        <td className="py-2 w-[25%] border-b"><img className='h-[5rem] w-[5rem]' src={value.image} alt="" /></td>
        <td className="py-2 px-4 border-b">{value.name}</td>
-       <td className="py-2 px-4 border-b">{value.category}</td>
+       <td className="py-2 px-4 border-b">{value.brand}</td>
        <td className="py-2 px-4 border-b">⭐ {value.rating}</td>
      </tr>
        )

@@ -68,7 +68,7 @@ function Users() {
   return (
     <div  className="p-8 bg-gray-100 min-h-screen">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold">Order Details</h2>
+        <h2 className="text-2xl font-semibold">All Users</h2>
     </div>
    
     <div className="bg-white shadow-md overflow-scroll space-y-5 scrollnone w-[97%] mt-10 rounded-lg p-6">

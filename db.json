@@ -7,45 +7,93 @@
       "password": "123456",
       "confirmPassword": "123456",
       "status": false,
-      "cart": [
+      "cart": [],
+      "orders": [
         {
-          "id": "3",
-          "name": "AIR MORE UPTEMPO '96",
-          "brand": "Nike",
-          "category": "Men",
-          "description": "WHITE/MIDNIGHT NAVY-METALLIC GOLD",
-          "price": 15995,
-          "stock": 20,
-          "rating": 4.6,
-          "available_sizes": [
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11"
+          "id": 1727865134902,
+          "date": {
+            "day": "Wed Oct 02 2024",
+            "time": "4:02:14 PM"
+          },
+          "payment": "Paypal",
+          "totalPrice": 91874,
+          "items": [
+            {
+              "id": "3",
+              "name": "AIR MORE UPTEMPO '96",
+              "brand": "Nike",
+              "category": "Men",
+              "description": "WHITE/MIDNIGHT NAVY-METALLIC GOLD",
+              "price": 15995,
+              "stock": 20,
+              "rating": 4.6,
+              "available_sizes": [
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ],
+              "image": "https://www.superkicks.in/cdn/shop/files/1_cc492b95-4496-4e37-8000-2a16e8962e3b.jpg?v=1721729610&width=1946",
+              "images": [
+                "https://www.superkicks.in/cdn/shop/files/7_7a552ab3-2170-4b0a-a014-d7a84ce4de7f.jpg?v=1721729610&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/3_040990d6-dc83-4569-9fd0-85c4817ce2b2.jpg?v=1721729610&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/4_c8ecfb38-79e9-44c2-8923-6b5267934c19.jpg?v=1721729610&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/5_12d43c7e-3509-452e-8932-a78fcd25cb1a.jpg?v=1721729610&width=1946"
+              ],
+              "count": 5,
+              "totalPrice": 79975
+            },
+            {
+              "id": "6",
+              "name": "WMN'S AIR JORDAN 5 RETRO LOW",
+              "brand": "Jordan",
+              "category": "Men",
+              "description": "INDIGO HAZE/FIRE RED-METALLIC SILVER",
+              "price": 11899,
+              "stock": 10,
+              "rating": 4.5,
+              "available_sizes": [
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ],
+              "image": "https://www.superkicks.in/cdn/shop/files/1_eef0c589-95f0-480c-b641-8862f079bac0.jpg?v=1685529096&width=1946",
+              "images": [
+                "https://www.superkicks.in/cdn/shop/files/2_1014671b-59da-402f-80e8-282a5d0f3c47.jpg?v=1685529097&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/3_25d1d0cc-8beb-49f2-80dc-f64754bb946a.jpg?v=1685529097&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/4_5044db04-5da5-4cdc-912d-d489b773ced7.jpg?v=1685529097&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/1_eef0c589-95f0-480c-b641-8862f079bac0.jpg?v=1685529096&width=1946"
+              ],
+              "count": 1,
+              "totalPrice": 11899
+            }
           ],
-          "image": "https://www.superkicks.in/cdn/shop/files/1_cc492b95-4496-4e37-8000-2a16e8962e3b.jpg?v=1721729610&width=1946",
-          "images": [
-            "https://www.superkicks.in/cdn/shop/files/7_7a552ab3-2170-4b0a-a014-d7a84ce4de7f.jpg?v=1721729610&width=1946",
-            "https://www.superkicks.in/cdn/shop/files/3_040990d6-dc83-4569-9fd0-85c4817ce2b2.jpg?v=1721729610&width=1946",
-            "https://www.superkicks.in/cdn/shop/files/4_c8ecfb38-79e9-44c2-8923-6b5267934c19.jpg?v=1721729610&width=1946",
-            "https://www.superkicks.in/cdn/shop/files/5_12d43c7e-3509-452e-8932-a78fcd25cb1a.jpg?v=1721729610&width=1946"
-          ],
-          "count": 5,
-          "totalPrice": 79975
+          "address": {
+            "fname": "hgcfx",
+            "lname": "knugyuft",
+            "address": "knhjvr",
+            "city": "njytf",
+            "pincode": "203156",
+            "mobile": "5564689",
+            "email": "bjtdresaw"
+          }
         }
       ],
-      "orders": [],
       "address": {
-        "fname": "",
-        "lname": "",
-        "address": "",
-        "city": "",
-        "pincode": "",
-        "mobile": "",
-        "email": ""
+        "fname": "hgcfx",
+        "lname": "knugyuft",
+        "address": "knhjvr",
+        "city": "njytf",
+        "pincode": "203156",
+        "mobile": "5564689",
+        "email": "bjtdresaw"
       }
     },
     {
