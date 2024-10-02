@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaSearch } from "react-icons/fa";
-import { BsFillPlusCircleFill } from "react-icons/bs";
+import { BsFillPlusCircleFill, BsNvidia } from "react-icons/bs";
 import { deleteProductById, getProductById, getProducts } from '../../../Api/Connection';
 import AddingProducts from '../AddProducts/AddingProducts';
 import EditPro from '../EditProducts/EditPro';
@@ -13,6 +13,14 @@ function TotalProducts({id}) {
   const [isModal,setIsModal]=useState(false)
   const [editModal,setEditModal]=useState(false)
   const [pId,setPId]=useState("");
+
+
+  const [showModal,setShowModal]=useState(false)
+  const [fetchData,setFetchData]=useState([])
+  const [search,setSeacrh]=useState('')
+
+
+
   const openModal=()=>{
     setIsModal(true)
   }
@@ -33,7 +41,33 @@ function TotalProducts({id}) {
     useEffect(()=>{
       getProducts()
       .then((res)=>setProducts(res.data))
-    },[editModal,isModal])
+
+      const fetchProducts =async()=>{
+        if(search.trim()===''){
+          setFetchData([])
+          setShowModal(false)
+          return
+        }
+
+        try{
+          const response=await getProducts()
+          const searchData=response.data.filter((value)=>
+            value.name.toLowerCase().includes(search.toLowerCase())
+          )
+          setFetchData(searchData)
+          setShowModal(true)
+        }catch(error){
+          console.log(error);  
+        }
+      }
+      fetchProducts()
+    },[editModal,isModal,search])
+
+    function handleSearchBar(id){
+      setSeacrh('')
+      setShowModal(false)
+      navigate(`/admin/pro-details/${id}`)
+    }
 
     const handleProductClick=(id)=>{
       navigate(`/admin/pro-details/${id}`) 
@@ -59,13 +93,32 @@ function TotalProducts({id}) {
   <div className="flex flex-col md:flex-row justify-between items-center mb-6">
       
       {/* Search Bar */}
-      <div className="flex border items-center  mb-4 md:mb-0">
+      <div className="flex border relative items-center  mb-4 md:mb-0">
         <input 
           type="text" 
+          onChange={(e)=>setSeacrh(e.target.value)}
           placeholder="Search by product name" 
           className="w-full md:w-auto p-2  rounded-lg focus:outline-none "
         />
-        <button  className="bg-blue-500 flex items-center space-x-3 hover:bg-blue-400 text-white py-2 px-4">
+
+        {showModal?
+        <div className='z-50 absolute top-10 bg-white w-[18rem] overflow-scroll scrollnone h-[20rem] rounded'>
+        <ul className=''>
+            {
+              fetchData.map((value)=>{
+                return(
+                  <li onClick={()=>handleSearchBar(value.id)} className='border p-2'>{value.name}</li> 
+                )
+              })
+            } 
+        </ul>
+      </div>:
+      null
+        }
+
+
+
+        <button className="bg-blue-500 flex items-center space-x-3 hover:bg-blue-400 text-white py-2 px-4">
         <FaSearch/><span>Search</span>
         </button>
       </div>

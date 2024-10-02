@@ -4,7 +4,7 @@ import { BsCart4 } from "react-icons/bs";
 import { FaUser } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import { RxCrossCircled } from "react-icons/rx";
-import { getCartById, getProducts, getUserById } from '../../Api/Connection';
+import { getAllUsers, getCartById, getProducts, getUserById } from '../../Api/Connection';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../USeContext/UserContext';
 import Product from '../../pages/User/Product';
@@ -14,6 +14,7 @@ function Header() {
   const [showModal,setShowModal]=useState(false)
   const [search,setSearch]=useState('')
   const [fetchedData,setFetchedData]=useState([])
+
   const [userData,setUserData]=useState({})
   const userId=localStorage.getItem('userId')
   const navigate=useNavigate()
@@ -52,8 +53,8 @@ function Header() {
         return 
       }
       try{
-        const response= await getProducts()
-        const searchData= response.data.filter((value)=>
+        const response = await getProducts()
+        const searchData = response.data.filter((value)=>
           value.name.toLowerCase().includes(search.toLowerCase())
         )
         setFetchedData(searchData)
@@ -85,7 +86,11 @@ function Header() {
       <div className='relative md:flex space-x-10 items-center'>
         <form className="flex-grow mx-20">
           <input
-          onChange={(e)=>setSearch(e.target.value)}
+          onChange={(e)=>{
+            setSearch(e.target.value)
+            console.log(e.target.value);
+            
+          }}
           value={search}
             type="text"
             placeholder="Search for shoes..."

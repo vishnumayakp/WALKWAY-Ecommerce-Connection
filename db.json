@@ -6,7 +6,7 @@
       "email": "vm@gmail.com",
       "password": "123456",
       "confirmPassword": "123456",
-      "status": true,
+      "status": false,
       "cart": [
         {
           "id": "3",
@@ -232,6 +232,54 @@
             "mobile": "tryhtyu",
             "email": "lilo;"
           }
+        },
+        {
+          "id": 1727841640862,
+          "date": {
+            "day": "Wed Oct 02 2024",
+            "time": "9:30:40 AM"
+          },
+          "payment": "Cash on delivery",
+          "totalPrice": 8995,
+          "items": [
+            {
+              "id": "11",
+              "name": "WMN'S AIR FORCE 1 SAGE LOW",
+              "brand": "Nike",
+              "category": "women",
+              "description": "WHITE/WHITE-WHITE",
+              "price": 8995,
+              "stock": 10,
+              "rating": 4.5,
+              "available_sizes": [
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ],
+              "image": "https://www.superkicks.in/cdn/shop/files/1_1a346368-9e41-4bdd-97f1-a6681adcdd97.jpg?v=1715174857&width=1946",
+              "images": [
+                "https://www.superkicks.in/cdn/shop/files/2_7029be05-cb4a-4447-84e0-2358c117d746.jpg?v=1715174857&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/2024-ecoms_27857b64-6307-4a7a-bcb3-bf048fec69ca.jpg?v=1715174857&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/4_89b4cecf-d931-466e-80a1-e15b57dfb18c.jpg?v=1715174857&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/1_1a346368-9e41-4bdd-97f1-a6681adcdd97.jpg?v=1715174857&width=1946"
+              ],
+              "count": 1,
+              "totalPrice": 8995
+            }
+          ],
+          "address": {
+            "fname": "sdaf",
+            "lname": "efrgw",
+            "address": "retyjl",
+            "city": "tj;",
+            "pincode": "yjguilo",
+            "mobile": "tryhtyu",
+            "email": "lilo;"
+          }
         }
       ],
       "address": {
@@ -262,7 +310,76 @@
       "password": "dev@123",
       "confirmPassword": "dev@123",
       "cart": [],
-      "orders": [],
+      "orders": [
+        {
+          "id": 1727841693125,
+          "date": {
+            "day": "Wed Oct 02 2024",
+            "time": "9:31:32 AM"
+          },
+          "payment": "Paypal",
+          "totalPrice": 13089,
+          "items": [
+            {
+              "id": "12",
+              "name": "WMN'S AIR JORDAN 2 RETRO LOW",
+              "brand": "Jordan",
+              "category": "women",
+              "description": "BLACK/VARSITY RED",
+              "price": 11249,
+              "stock": 10,
+              "rating": 4.5,
+              "available_sizes": [
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ],
+              "image": "https://www.superkicks.in/cdn/shop/files/1_b0f282a5-00b9-4ad3-9e4a-d5358cc84d9a.jpg?v=1711088563&width=1946",
+              "images": [
+                "https://www.superkicks.in/cdn/shop/files/3_bcde63b8-f05f-4dea-93d0-b2fc3df0c00f.jpg?v=1711088563&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/5_d8800896-5ba6-4cfe-b2ef-875ebf9f9478.jpg?v=1711088563&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/4_db3261e8-a260-49d5-8653-540133d7eb32.jpg?v=1711088558&width=1946",
+                "https://www.superkicks.in/cdn/shop/files/6_c948badf-f457-41e5-be9b-60e4bdcd5d81.jpg?v=1711088563&width=1946"
+              ],
+              "count": 1,
+              "totalPrice": 11249
+            },
+            {
+              "id": "14",
+              "name": "Advantage Court Lifestyle Hook-and-Loop Shoes",
+              "brand": "Adidas Originals",
+              "category": "kids",
+              "description": "Classic sneakers made in part with recycled materials.",
+              "price": 1840,
+              "stock": 10,
+              "rating": 4.5,
+              "available_sizes": [
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ],
+              "image": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/e78777487b2e45248fbcae8c0099602d_9366/Advantage_Court_Lifestyle_Hook-and-Loop_Shoes_Black_GW6490_01_standard.jpg",
+              "images": [
+                "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/400425f0f0df4827ab6dae8c00998e92_9366/Advantage_Court_Lifestyle_Hook-and-Loop_Shoes_Black_GW6490_02_standard_hover.jpg",
+                "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f9b734a633e64f139fdaae8c0099a743_9366/Advantage_Court_Lifestyle_Hook-and-Loop_Shoes_Black_GW6490_03_standard.jpg",
+                "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ab46a8cfe91840debc80ae8c012583e1_9366/Advantage_Court_Lifestyle_Hook-and-Loop_Shoes_Black_GW6490_09_standard.jpg",
+                "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/5beac986d58e437b9d47ae8c0099d3ba_9366/Advantage_Court_Lifestyle_Hook-and-Loop_Shoes_Black_GW6490_05_standard.jpg"
+              ],
+              "count": 1,
+              "totalPrice": 1840
+            }
+          ],
+          "address": []
+        }
+      ],
       "address": [],
       "status": false
     },
