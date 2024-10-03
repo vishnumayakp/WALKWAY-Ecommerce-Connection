@@ -6,8 +6,37 @@
       "email": "vm@gmail.com",
       "password": "123456",
       "confirmPassword": "123456",
-      "status": false,
-      "cart": [],
+      "status": true,
+      "cart": [
+        {
+          "id": "6",
+          "name": "WMN'S AIR JORDAN 5 RETRO LOW",
+          "brand": "Jordan",
+          "category": "Men",
+          "description": "INDIGO HAZE/FIRE RED-METALLIC SILVER",
+          "price": 11899,
+          "stock": 10,
+          "rating": 4.5,
+          "available_sizes": [
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "image": "https://www.superkicks.in/cdn/shop/files/1_eef0c589-95f0-480c-b641-8862f079bac0.jpg?v=1685529096&width=1946",
+          "images": [
+            "https://www.superkicks.in/cdn/shop/files/2_1014671b-59da-402f-80e8-282a5d0f3c47.jpg?v=1685529097&width=1946",
+            "https://www.superkicks.in/cdn/shop/files/3_25d1d0cc-8beb-49f2-80dc-f64754bb946a.jpg?v=1685529097&width=1946",
+            "https://www.superkicks.in/cdn/shop/files/4_5044db04-5da5-4cdc-912d-d489b773ced7.jpg?v=1685529097&width=1946",
+            "https://www.superkicks.in/cdn/shop/files/1_eef0c589-95f0-480c-b641-8862f079bac0.jpg?v=1685529096&width=1946"
+          ],
+          "count": 1,
+          "totalPrice": 11899
+        }
+      ],
       "orders": [
         {
           "id": 1727865134902,
@@ -541,32 +570,6 @@
   ],
   "products": [
     {
-      "id": "4",
-      "name": "AIR JORDAN 5 RETRO 'EL GITRO'",
-      "brand": "Jordan",
-      "category": "Men",
-      "description": "SAIL/DARK PONY-COCONUT MILK-PINE GREEN",
-      "price": 19295,
-      "stock": "15",
-      "rating": 5,
-      "available_sizes": [
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11"
-      ],
-      "image": "https://www.superkicks.in/cdn/shop/files/2_3e3631ce-b6d4-4795-a556-f13dcc009dcd.jpg?v=1726572074&width=600",
-      "images": [
-        "https://www.superkicks.in/cdn/shop/files/5_d069c4ba-6d25-407a-9e47-c210c80961a3.jpg?v=1726572074&width=600",
-        "https://www.superkicks.in/cdn/shop/files/4_abb25b99-e610-4545-84d0-d5c22170506c.jpg?v=1726572074&width=1946",
-        "https://www.superkicks.in/cdn/shop/files/9_f5df14e2-dc54-4597-984e-086d359cc607.jpg?v=1726572074&width=1946",
-        "https://www.superkicks.in/cdn/shop/files/6_5d2fbb9f-8ee5-4f19-9221-6bcdffcdf8e9.jpg?v=1726572074&width=1946"
-      ]
-    },
-    {
       "id": "5",
       "name": "GAZELLE SHOES",
       "brand": "Adidas Originals",
@@ -919,6 +922,17 @@
         "https://www.superkicks.in/cdn/shop/files/5_e57c6faf-5364-4d36-a053-984fa3cc4207.jpg?v=1692875647&width=1946",
         "https://www.superkicks.in/cdn/shop/files/4..jpg?v=1692875647&width=1946",
         "https://www.superkicks.in/cdn/shop/files/6_4408358d-dbde-4a06-9f73-7fd8c853a51e.jpg?v=1692875647&width=1946"
+      ]
+    },
+    {
+      "id": "5efd",
+      "name": "",
+      "price": 0,
+      "description": "",
+      "stock": 0,
+      "image": "",
+      "images": [
+        ""
       ]
     }
   ]

@@ -4,14 +4,14 @@ function AdminHeader({ isSidebarOpen }) {
   return (
     <div>
       <nav
-        className={`bg-white border-b border-gray-200  top-0 h-16 flex justify-between items-center px-4 transition-all duration-300 ${
+        className={`bg-white border-b border-gray-200 fixed w-[100%] z-50  top-0 h-16 flex justify-between items-center px-4 transition-all duration-300 ${
           isSidebarOpen ? 'left-64' : 'left-50'
         } w-full`}
       >
         <div className="text-lg  font-bold">Dashboard</div>
-        <div className="flex items-center space-x-4">
-          <div className="relative">
-            {/* Notification Bell Icon */}
+        <div className="flex items-center ">
+          <div className="relative mr-10 ">
+
             <span className="absolute top-0 right-0 block h-2 w-2 bg-red-600 rounded-full"></span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ function AdminHeader({ isSidebarOpen }) {
               viewBox="0 0 24 24"
               strokeWidth="2"
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 z-100"
             >
               <path
                 strokeLinecap="round"
@@ -28,8 +28,8 @@ function AdminHeader({ isSidebarOpen }) {
               />
             </svg>
           </div>
-          <div className="flex items-center space-x-2">
-            {/* User Profile */}
+          <div className="flex items-center mr-72 space-x-2">
+
             <span>Admin</span>
             <img
               src="https://randomuser.me/api/portraits/men/1.jpg"
