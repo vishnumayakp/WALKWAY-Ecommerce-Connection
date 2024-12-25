@@ -28,7 +28,9 @@ function ProductDetails() {
         const fetchProductDetails=async()=>{
             try{
                 const res=await getProductById(id)
-                setDetails(res.data)
+                console.log(res.data);
+                
+                setDetails(res.data.data)
                 setImages(res.data.images)    
             }catch(error){
                 console.log("can't fetch the data",error);   
@@ -62,7 +64,7 @@ function ProductDetails() {
     }
  
   return (
-    <div className='flex  justify-center lg:p-5'>
+    <div className='flex mt-20 justify-center lg:p-5'>
       <div className='md:w-[80%]  w-full xl:flex-row  p-5 shadow-lg border space-x-5  flex flex-col'>
         <div className=' space-x-5 w-full p-10 md:h-[36rem] h-[40%] flex'>
           <div className='w-[25%] lg:h-[100%] space-y-4 scrollnone overflow-scroll md:p-7'>
@@ -86,7 +88,7 @@ function ProductDetails() {
             </div>
           <div className='flex'>
           <button onClick={()=>openEditModal(details.id)} className='border bg-yellow-500 text-white rounded p-2 w-20'>Edit</button>
-          <button onClick={()=>handleDelete(details().id)}  className='border bg-red-500 text-white rounded p-2 w-20'>Del</button>
+          <button onClick={()=>handleDelete(details.id)}  className='border bg-red-500 text-white rounded p-2 w-20'>Del</button>
           </div>
         </div>
       </div>

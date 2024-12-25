@@ -4,10 +4,11 @@ import { BsCart4 } from "react-icons/bs";
 import { FaUser } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import { RxCrossCircled } from "react-icons/rx";
-import { getAllUsers, getCartById, getProducts, getUserById } from '../../Api/Connection';
+import { getAllUsers, getCartById, getProducts, getUserById, searchProducts } from '../../Api/Connection';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../USeContext/UserContext';
 import Product from '../../pages/User/Product';
+import Cart from './Cart Pro/Cart';
 
 
 function Header() {
@@ -16,29 +17,30 @@ function Header() {
   const [fetchedData,setFetchedData]=useState([])
 
   const [userData,setUserData]=useState({})
-  const userId=localStorage.getItem('userId')
+  const token=localStorage.getItem('authToken')
+  const userName=localStorage.getItem('userName')
   const navigate=useNavigate()
   const [cartLength,setCartLength]=useState([])
   const {cartFlag}=useContext(AuthContext)
 
   useEffect(()=>{
-    if(userId){
-      getUserById(userId)
-    .then((res)=>setUserData(res.data))
-      getCartById(userId)
-      .then(res=>setCartLength(res))
+    if(token){
+      getCartById()
+      .then(res=> setCartLength(res))
+
     }
-  },[userId,cartFlag])
+  },[token,cartFlag])
    function handleAccount(){
-    if(userId){
+    if(userName){
       navigate('/profile')
+      
     }else{
       navigate('/login')
     }
    }
 
    function handleCart(){
-    if(userId){
+    if(token){
       navigate('/cart')
     }else{
       navigate('/login')
@@ -53,11 +55,12 @@ function Header() {
         return 
       }
       try{
-        const response = await getProducts()
-        const searchData = response.data.filter((value)=>
-          value.name.toLowerCase().includes(search.toLowerCase())
-        )
-        setFetchedData(searchData)
+        searchProducts(search).then((res)=>{
+          setFetchedData(res.data)
+          console.log(res.data);
+          
+        });
+        
         setShowModal(true)
 
       }
@@ -101,9 +104,9 @@ function Header() {
         <div className='z-50 absolute top-10 bg-white w-[18rem] overflow-scroll scrollnone h-[20rem] rounded'>
           <ul className=''>
            {
-            fetchedData.map((value)=>{
+            fetchedData && fetchedData.map((value)=>{
               return(
-                <li onClick={()=>handleSearchBar(value.id)} className='border p-2'>{value.name}</li>
+                <li onClick={()=>handleSearchBar(value.productId)} className='border p-2'>{value.productName}</li>
               )
             })
            }
@@ -112,12 +115,12 @@ function Header() {
         null
       }
        <div className='relative flex space-x-5'>
-        <button onClick={handleAccount} className="text-gray-300 flex hover:text-white"><FaUser onClick={()=>navigate('/profile')} className='h-6 w-6'/>{userId?userData.name:"Account"} </button>
+        <button onClick={handleAccount} className="text-gray-300 flex hover:text-white"><FaUser onClick={()=>navigate('/profile')} className='h-6 w-6'/>{userName?userName:"Account"} </button>
         
        
         <button onClick={handleCart} className="text-gray-300 flex hover:text-white">
           <BsCart4  className='h-7 w-7'/>
-          <span className='absolute right-5 bg-white text-black rounded-2xl text-xs w-4'>{cartLength.length}</span>
+          <span className='absolute right-5 bg-white text-black rounded-2xl text-xs w-4'>{cartLength.totalItems}</span>
         </button>
         </div>
       </div>

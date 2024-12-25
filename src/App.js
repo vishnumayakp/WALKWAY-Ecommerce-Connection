@@ -20,6 +20,7 @@ import OrderDetails from './pages/Admin/OrderDetails';
 import ProductView from './pages/Admin/ProductView';
 import AddProducts from './pages/Admin/AddProducts';
 import UserDetails from './pages/Admin/UserDetails';
+import WishListPage from './pages/User/WishListPage';
 
 
 
@@ -33,6 +34,7 @@ function App() {
        <Route path='/' element={<Home/>}/>
        <Route path='/product/:id' element={<Product/>}/>
        <Route path='/cart' element={<CartPage/>}/>
+       <Route path='/wishlist' element={<WishListPage/>}/>
        <Route path='/payment' element={<Paymentsection/>}/>
        <Route path='/showorder' element={<OrderShowPage/>}/>
        <Route path='/profile' element={<ProfilePage/>}/>

@@ -1,16 +1,16 @@
 import React from 'react'
 import Header from '../../components/User/Header'
-import ShopProducts from '../../components/User/Shop Products/ShopProducts'
+import WishList from '../../components/User/WishList/WishList'
 import Footer from '../../components/Admin/Footer'
 
-function Shop() {
+const WishListPage = () => {
   return (
     <div>
       <Header/>
-      <ShopProducts/>
+      <WishList/>
       <Footer/>
     </div>
   )
 }
 
-export default Shop
+export default WishListPage

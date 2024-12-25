@@ -65,7 +65,7 @@ function AdminHome() {
 
 
   return (
-    <div className="p-8 bg-gray-100 min-h-screen">
+    <div className="p-8 bg-gray-100 mt-10 min-h-screen">
     <h1 className="text-3xl font-semibold mb-8">Admin Dashboard</h1>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div className="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4">

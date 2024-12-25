@@ -5,11 +5,12 @@ import * as Yup from 'yup';
 import { addSignup } from '../Api/Connection';
 import { useNavigate } from 'react-router-dom';
 import Product from './User/Product';
+import { toast } from 'react-toastify';
 
 function Registration() {
   const navigate=useNavigate()
   const validationSchema = Yup.object({
-    name: Yup.string()
+    userName: Yup.string()
       .min(3, 'Must be at least 3 characters')
       .required('Full Name is required'),
     email: Yup.string()
@@ -18,9 +19,6 @@ function Registration() {
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
       .required('Password is required'),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Passwords must match')
-      .required('Confirm Password is required'),
   });
 
   return (
@@ -32,28 +30,35 @@ function Registration() {
 
         <Formik
           initialValues={{
-            name: '',
+            userName: '',
             email: '',
-            regdate:'',
             password: '',
-            confirmPassword: '',
             cart:[],
             orders:[],
             address:[]
           }}
           validationSchema={validationSchema}
           onSubmit={(values) => {
-            addSignup(values)
+            try{
+              addSignup(values)
             .then(()=>navigate('/login'))
+            .catch((error)=>{
+              console.log("SignUp Failed:",error.response.data);
+              toast.error('This email is already registered',{position:'top-center'})
+            });
+            }catch(error){
+              console.log('Unexpected error',error);
+              
+            }
           }}
         >
           {() => (
             <Form>
               <div className="mb-4">
-                <label className="block text-white text-sm font-medium mb-2"htmlFor="name"> Full Name</label>
+                <label className="block text-white text-sm font-medium mb-2"htmlFor="userName"> UserName</label>
                 <Field
-                  id="name"
-                  name="name"
+                  id="userName"
+                  name="userName"
                   type="text"
                   placeholder="Enter your full name"
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
@@ -66,7 +71,7 @@ function Registration() {
               </div>
 
               <div className="mb-4">
-                <label cassName="block text-white text-sm font-medium mb-2" htmlFor="email">Email</label>
+                  <label className="block text-white text-sm font-medium mb-2"htmlFor="email"> Email </label>
                 <Field
                   id="email"
                   name="email"
@@ -76,22 +81,6 @@ function Registration() {
                 />
                 <ErrorMessage
                   name="email"
-                  component="p"
-                  className="text-red-500 text-xs  mt-1"
-                />
-              </div>
-
-              <div className="mb-4">
-                <label cassName="block text-white text-sm font-medium mb-2" htmlFor="text">Registration Date</label>
-                <Field
-                  id="date"
-                  name="regdate"
-                  type="date"
-                  placeholder="Enter Registration Date"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <ErrorMessage
-                  name="regdate"
                   component="p"
                   className="text-red-500 text-xs  mt-1"
                 />
@@ -110,21 +99,6 @@ function Registration() {
                   name="password"
                   component="p"
                   className="text-red-500 text-xs  mt-1"
-                />
-              </div>
-              <div className="mb-6">
-                <label className="block text-white text-sm font-medium mb-2" htmlFor="confirmPassword">Confirm Password</label>
-                <Field
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  placeholder="Confirm your password"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <ErrorMessage
-                  name="confirmPassword"
-                  component="p"
-                  className="text-red-500 text-xs mt-1"
                 />
               </div>
               <button type="submit" className="w-full py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-700 transition duration-300">Register</button>

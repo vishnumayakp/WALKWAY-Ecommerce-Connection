@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import product1 from '../../../assets/kids.png'
-import { getCartById, getProductById, updateCartById } from '../../../Api/Connection'
+import { addToCart, getCartById, getProductById, updateCartById } from '../../../Api/Connection'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AuthContext } from '../../../USeContext/UserContext'
 import { toast } from 'react-toastify'
 
 function ProductDetails() {
   const navigate=useNavigate()
-  const userId=localStorage.getItem('userId')
+  const token=localStorage.getItem('authToken')
   const [product,setProduct]=useState({})
   const [state,setState]=useState(0)
   const [qty,setQty]=useState(1)
@@ -16,88 +15,96 @@ function ProductDetails() {
   const {id}=useParams()
   useEffect(()=>{
     getProductById(id)
-    .then((res)=>setProduct(res.data))  
+    .then((res)=>setProduct(res.data.data))  
   },[id])
+  console.log(product);
  
-  async function handleAddCart(){
-   if(userId){
-    let currentCart=await getCartById(userId)
-   let updatedCart;
-
-   const currentIndex=currentCart.findIndex((item)=>item.id===product.id)
-   console.log(currentIndex);
-  if(currentIndex>=0){
-    updatedCart=currentCart.map((product,index)=>(
-      index===currentIndex? {...product,count:product.count+qty,totalPrice:product.price*(product.count+qty)}:product
-     ))
-  }else{
-    updatedCart=[...currentCart,{...product,count:qty,totalPrice:product.price*qty}]
+  async function handleAddCart(productId,quantity){
+    if (token) {
+      try {
+          const res = await addToCart(productId,quantity);
+          console.log(res);
+          setCartFlag(!cartFlag)
+          toast.success('Item added to cart', { position: 'bottom-right' });
+      } catch (error) {
+          toast.error('Failed to add item to cart. Please try again.', { position: 'top-right' });
+          console.log(productId);
+          
+      }
+  } else {
+      toast.error('Please login', { position: 'bottom-right' });
+      navigate('/login');
   }
-  updateCartById(userId,{cart:updatedCart})
-  .then(()=>{
-    setCartFlag(!cartFlag)
-    toast.success('Item Added to Cart',{position:'bottom-right'})
-  })
-   }else{
-    toast.error('Please Login',{position:'bottom-right'})
-    navigate('/login')
-   }
-  }
-  
+  } 
   return (
-    <div className='flex justify-center lg:p-5'>
-      <div className='md:w-[80%] w-full xl:flex-row  p-5 shadow-lg border space-x-5  flex flex-col'>
-        <div className=' space-x-5 w-full p-10 md:h-[36rem] h-[40%] flex'>
-          <div className='w-[25%] lg:h-[100%] space-y-4 scrollnone overflow-scroll md:p-7'>
-          {product.images && product.images.map((value, index) => (
-              <div onClick={()=>setState(index)} key={index} className='w-full transition duration-500 ease-in-out transform hover:scale-110  bg-gray-200'>
-                <img className='h-[100%] w-[100%]' src={value} alt={`Product Image ${index + 1}`} />
-              </div>
-            ))}
-
+<div className="flex justify-center lg:p-5 py-8">
+<div className="w-full max-w-6xl flex flex-col lg:flex-row space-x-0 lg:space-x-8 shadow-lg border rounded-lg p-6">
+  {/* Left Side - Product Image & Thumbnails */}
+  <div className="flex flex-col lg:flex-row w-full lg:w-[60%] space-x-0 lg:space-x-8">
+    <div className="w-full lg:w-[20%] flex lg:flex-col space-y-4 space-x-2 lg:space-x-0 overflow-scroll scrollnone h-[26rem]">
+      {product.imageUrls &&
+        product.imageUrls.map((value, index) => (
+          <div
+            key={index}
+            className={`w-24 h-24 rounded-lg border-none bg-gray-200 hover:scale-110 transition transform cursor-pointer ${state === index ? 'border-2 border-black' : ''}`}
+            onClick={() => setState(index)}
+          >
+            <img className="w-full h-full object-cover rounded-lg" src={value} alt={`Product Thumbnail ${index + 1}`} />
           </div>
-          <div className='w-[70%] h-[100%]'>
-            {
-              product.images?<div className='h-[100%] '><img className='h-[100%] w-[100%]' src={product.images[state]} alt="" /></div>:null
-            }
-          </div>
-        </div>
-        <div className='  flex space-y-10  flex-col'>
-          <div className='flex flex-col space-y-1 items-start'>
-          <h1 className='text-2xl'>{product.name}</h1>
-           <p className='text-sm text-left'>{product.description}</p>
-           <p className='font-bold'>₹ {product.price}</p>
-           <p>⭐ {product.rating}</p>
-            </div>
-
-          <div className='border-2 w-40'>
-            <select className='w-full focus:outline-none' name="" id="">
-              <option value="">Select size</option>
-              {
-
-                product.available_sizes && (product.available_sizes).map((value)=>{
-                  return (
-                    <option value="">{value}</option>
-                  )
-                })
-              }
-            </select>
-          </div>
-          <div className='flex gap-20 flex-col'>
-          <div className=' w-32 justify-between border items-center flex h-10'>
-            <button onClick={()=>setQty(qty==1? 1:qty-1)} className='text-3xl w-20 border-x-2 border-y-2 bg-gray-200'>-</button>
-            <span className='w-20'>{qty}</span>
-            <button onClick={()=>setQty(qty+1)} className='text-3xl w-20 border-x-2 border-y-2 bg-gray-200'>+</button>
-          </div>
-          <button onClick={handleAddCart} className=' w-32 h-10 border bg-black hover:bg-gray-600 text-white rounded-3xl'>ADD TO CART</button>
-          </div>
-          <div className='border-2'>
-            <h3 className='font-bold'>Free Delivery</h3>
-            <p >Free Delivery Available on Purchases Over $50!</p>
-          </div>
-        </div>
-      </div>
+        ))}
     </div>
+
+
+    {/* Main Product Image */}
+<div className="w-full lg:w-[75%] h-[20rem] lg:h-[25rem] rounded-lg overflow-hidden bg-gray-100">
+  {product.imageUrls && (
+    <img className="w-full h-full object-cover" src={product.imageUrls[state]} alt="Product Main Image" />
+  )}
+</div>
+
+  </div>
+
+  {/* Right Side - Product Info */}
+  <div className="flex flex-col w-full lg:w-[40%] lg:pr-16 space-y-6">
+    <div className="space-y-2">
+      <h1 className="text-3xl font-semibold">{product.productName}</h1>
+      <p className="text-gray-600 font-bold text-sm">{product.productBrand}</p>
+      <p className="text-gray-600 text-sm">{product.productDescription}</p>
+      <p className="text-xl font-bold text-black">₹ {product.productPrice}</p>
+      <p className=" font-semibold">Available Stock : {product.stock}</p>
+    </div>
+
+    <div className="space-y-4">
+      <div className="border-2 w-48 rounded-lg p-2">
+        <select className="w-full focus:outline-none" name="" id="">
+          <option value="">Select size</option>
+          {product.sizes &&
+            product.sizes.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </div>
+
+      {/* Quantity Selector */}
+      <div className="flex space-x-4 items-center">
+        <div className="flex items-center border rounded-lg overflow-hidden">
+          <button onClick={() => setQty(qty === 1 ? 1 : qty - 1)} className="text-2xl px-4 py-2 bg-gray-200">
+            -
+          </button>
+          <span className="px-6">{qty}</span>
+          <button onClick={() => setQty(qty + 1)} className="text-2xl px-4 py-2 bg-gray-200">
+            +
+          </button>
+        </div>
+        <button
+          onClick={()=>handleAddCart(product.productId,qty)}
+          className="bg-black hover:bg-gray-700 text-white px-8 py-3 rounded-lg transition duration-200"
+        >
+          ADD TO CART
+        </button>
+      </div>      
+    </div>
+  </div>
+</div>
+</div>
   )
 }
 

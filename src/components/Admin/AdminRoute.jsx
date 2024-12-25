@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 const AdminRouter= ({children})=>{
     const isLoggedIn=!!localStorage.getItem('authToken');
-    const isAdmin=localStorage.getItem('role')=== 'admin';
+    const isAdmin=localStorage.getItem('role') === 'admin';
 
     if(!isLoggedIn){
         return <Navigate to='/login'/>;
