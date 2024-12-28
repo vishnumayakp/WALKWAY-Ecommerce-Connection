@@ -8,7 +8,9 @@ const USERS_LIST="http://localhost:5000/users";
 
 
 export async function getProducts(){
-    return await axiosInstance.get("/Product/All")
+    const res= await axiosInstance.get("/Product/All")    
+    return (res.data.data)
+    
 }
 export async function getProductById(id){
     return await axiosInstance.get(`/Product/${id}`)
@@ -30,22 +32,15 @@ export function login(data){
     return axiosInstance.post("/Auth/Login",data)
 }
 
-export function getAllUsers(){
-    return axios.get(USERS_LIST)
-}
-
-export function getUserById(id){
-    return axiosInstance.get(`${USERS_LIST}`)
-}
-
-export async function addToCart(productId,quantity){
-    const res= await  axiosInstance.post(`/Cart/AddToCart/${productId}?quantity=${quantity}`)
+export async function addToCart(productId,quantity,size){
+    const res= await  axiosInstance.post(`/Cart/AddToCart/${productId}?quantity=${quantity}&size=${size}`)
+    console.log('response',res);
+    
     return (res.data.data)
 }
 
 export async function getCartById(){
    const res= await axiosInstance.get(`/Cart/GetCartItems`)
-//    console.log('Full Response:', res.data.data.cartItems);
   return (res.data.data)
 }
 
@@ -68,17 +63,18 @@ export async function removeFromCart(productId){
 
 export async function addOrRemoveWishList(productId){
     const res= await axiosInstance.get(`/WishList/AddOrReomve/${productId}`)
-    // console.log('Full Response:', res.data.statusCode);
     return (res.data)
 }
 
 export async function getWishListById(){
     const res= await axiosInstance.get(`/WishList/WishList`)
-//    console.log('Full Response:', res);
   return (res.data.data)
 }
 
-
+export async function removeProductById(productId){
+    const res=await axiosInstance.delete(`/WishList/removeproduct/${productId}`)
+    return (res.data.data)
+}
 
 export async function getAddressById(id){
    const res= await axios.get(`${USERS_LIST}/${id}`)
@@ -102,18 +98,28 @@ export function updateOrderById(id,data){
 
 // Admin-side
 
-export function AddProductDetails(data){
-    return axios.post (PRODUCT_LIST,data)
-}
+// export function AddProductDetails(data){
+//     return axiosInstance.post('/Product/Add',data)
+// }
 
 export function updateProductById(id,data){
     return axios.patch(`${PRODUCT_LIST}/${id}`,data)
 }
 
-export function deleteProductById(id){
-    return axios.delete(`${PRODUCT_LIST}/${id}`)
+export async function deleteProductById(id){
+   const res = await axiosInstance.delete(`/Product/${id}`)
+   return (res.data.data)
 }
 
 export function updateUserStatus(id,data){
     return axios.patch(`${USERS_LIST}/${id}`,{status:data})
+}
+
+
+export function getAllUsers(){
+    return axios.get(USERS_LIST)
+}
+
+export function getUserById(id){
+    return axiosInstance.get(`${USERS_LIST}`)
 }

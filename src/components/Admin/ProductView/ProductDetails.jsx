@@ -7,11 +7,10 @@ function ProductDetails() {
   const {id}=useParams()
     const [details,setDetails]=useState({})
     const [products,setProducts]=useState([])
-    const[images,setImages]=useState([])
     const [editModal,setEditModal]=useState(false)
     const [pId,setPId]=useState("");
     
-  const [imageIndex,setImageIndex]=useState(0)
+  const [state,setState]=useState(0)
 
     const openEditModal=(id)=>{
       setPId(id)
@@ -22,21 +21,17 @@ function ProductDetails() {
       setEditModal(false)
     }
 
-
-
-    useEffect(()=>{
-        const fetchProductDetails=async()=>{
-            try{
-                const res=await getProductById(id)
-                console.log(res.data);
-                
-                setDetails(res.data.data)
-                setImages(res.data.images)    
-            }catch(error){
+    useEffect(()=>{       
+      try{
+         getProductById(id)
+         .then((res)=>{
+          console.log(res.data.data);
+          
+          setDetails(res.data.data)
+         })   
+          }catch(error){
                 console.log("can't fetch the data",error);   
             }
-        }
-        fetchProductDetails()
     },[id])
 
     useEffect(()=>{
@@ -65,35 +60,63 @@ function ProductDetails() {
  
   return (
     <div className='flex mt-20 justify-center lg:p-5'>
-      <div className='md:w-[80%]  w-full xl:flex-row  p-5 shadow-lg border space-x-5  flex flex-col'>
-        <div className=' space-x-5 w-full p-10 md:h-[36rem] h-[40%] flex'>
-          <div className='w-[25%] lg:h-[100%] space-y-4 scrollnone overflow-scroll md:p-7'>
-          {images.length>0 && images.map((value, index) => (
-              <div onClick={()=>setImageIndex(index)} key={index} className='w-full transition duration-500 ease-in-out transform hover:scale-110  bg-gray-200'>
-                <img className='h-[100%] w-[100%]' src={value} alt={`Product Image ${index + 1}`} />
-              </div>
-            ))}
+  <div className='md:w-[90%] w-full xl:flex-row p-10 shadow-lg  space-x-8 flex flex-col lg:flex-row   bg-white rounded-lg'>
+    
 
-          </div>
-          <div className='w-[70%] h-[100%]'>
-          <div className='h-[100%] '><img className='h-[100%] w-[100%]' src={images[imageIndex]} alt="" /></div>
-          </div>
-        </div>
-        <div className='  flex space-y-10  flex-col'>
-          <div className='flex flex-col space-y-1 items-start'>
-          <h1 className='text-2xl'>{details.name}</h1>
-           <p className='text-sm text-left'>{details.description}</p>
-           <p className='font-bold'>{details.price}</p>
-           <p>⭐ {details.rating}</p>
+    <div className='w-full lg:w-[20%] h-[30rem] space-y-5 overflow-scroll scrollnone'>
+      <div className='flex flex-col items-center space-y-4'>
+        {details?.imageUrls &&
+          details.imageUrls.map((value, index) => (
+            <div
+              onClick={() => setState(index)}
+              key={index}
+              className={`w-[100px] h-[100px] transition duration-500 ease-in-out transform hover:scale-110 bg-gray-200 rounded-lg overflow-hidden ${state === index ? '' : ''}`}>
+              <img className='w-full h-full object-cover' src={value} alt={`Product Image ${index + 1}`} />
             </div>
-          <div className='flex'>
-          <button onClick={()=>openEditModal(details.id)} className='border bg-yellow-500 text-white rounded p-2 w-20'>Edit</button>
-          <button onClick={()=>handleDelete(details.id)}  className='border bg-red-500 text-white rounded p-2 w-20'>Del</button>
-          </div>
-        </div>
+          ))}
       </div>
-      {editModal && <EditPro id={pId} closeEditModal={closeEditModal}/>}
     </div>
+
+
+    <div className='w-full lg:w-[65%] h-[400px] lg:h-[450px] rounded-lg overflow-hidden bg-gray-100'>
+      {details?.imageUrls && (
+        <img className="w-full h-full object-cover" src={details.imageUrls[state]} alt="Product Main Image" />
+      )}
+    </div>
+
+
+    <div className='w-full lg:w-[15%] flex flex-col justify-between space-y-6'>
+      <div className='flex flex-col space-y-3'>
+        <h1 className='text-3xl font-bold text-gray-800'>{details?.productName}</h1>
+        <p className='text-sm text-black font-bold leading-6'>{details?.productBrand}</p>
+        <p className='text-sm text-gray-600 leading-6'>
+          {details?.productDescription?.split('\n').map((line, index) => (
+            <span key={index}>
+              {line}
+              <br />
+            </span>
+          ))}
+        </p>
+        <p className='text-2xl font-bold text-green-600'>₹ {details?.productPrice}</p>
+      </div>
+      <div className='flex space-x-4'>
+        <button
+          onClick={() => openEditModal(details.id)}
+          className='bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300'>
+          Edit
+        </button>
+        <button
+          onClick={() => handleDelete(details.id)}
+          className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300'>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {editModal && <EditPro id={pId} closeEditModal={closeEditModal} />}
+</div>
+
   )
 }
 export default ProductDetails

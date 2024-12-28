@@ -25,7 +25,7 @@ function Overview() {
     } else {
       getProducts()
         .then((response) =>{
-          setProduct(response.data.data)
+          setProduct(response)
         })
         .catch((error) =>console.log(error));
         getWishListById()
@@ -36,13 +36,29 @@ function Overview() {
   
 
   async function handleWishList(productId) {
-    await addOrRemoveWishList(productId)
-    .then((res)=>{
-      getWishListById()
-      .then((res)=>setWishList(res))
-      .catch((error)=>console.log(error))
-    })
+ if(token){
+  const updateWishList=wishList.filter(item=>item.productId!==productId)
+  setWishList(updateWishList)
+  if(wishList.length===0){
+    console.log("Now WishList is Empty")
   }
+  await addOrRemoveWishList(productId)
+  .then((res)=>{
+    getWishListById()
+    .then((res)=>{
+      setWishList(res)
+      console.log("updated wishList");
+      
+    })
+    .catch((error)=>console.log(error))
+  })
+ }
+  }
+
+  async function handleProduct(productId){
+    navigate(`/product/${productId}`)
+  }
+
 return (
   <div>
     <div className='flex flex-col items-center'>
@@ -66,12 +82,12 @@ return (
     </div>
     <div className="flex flex-wrap w-[100%] justify-center gap-10 h-[25rem] mt-5">
       {product.map((value) => {
-        const isInWishList = wishList.find(item => item.productId === value.productId)
+        const isInWishList = wishList?.find(item => item.productId === value.productId)
 
         return (
           <div
             key={value.productId}
-            className="relative h-[30rem] w-[25rem] sm:h-[24rem] sm:w-[18rem] md:h-[20rem] lg:w-[15rem] md:w-[16rem] flex flex-col items-start">
+            className="relative h-[30rem] w-[25rem] sm:h-[24rem] sm:w-[18rem] md:h-[20rem] lg:w-[15rem] md:w-[16rem] flex flex-col transition-transform duration-300 hover:scale-105 items-start">
             <div className="relative w-full h-[80%] bg-gray-200">
               <div className="absolute top-2 right-2" onClick={() => handleWishList(value.productId)}>
                 {isInWishList ? (
@@ -108,6 +124,7 @@ return (
               </div>
 
               <img
+              onClick={()=>handleProduct(value.productId)}
                 src={value.imageUrls[0]}
                 alt={value.productName}
                 className="w-full h-full object-cover"

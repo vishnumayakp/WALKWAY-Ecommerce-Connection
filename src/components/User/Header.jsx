@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Logo from '../../assets/Logo.png'
-import { BsCart4 } from "react-icons/bs";
+import { BsCart4, BsNvidia } from "react-icons/bs";
+import { FaHeart } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import { RxCrossCircled } from "react-icons/rx";
@@ -38,6 +39,13 @@ function Header() {
       navigate('/login')
     }
    }
+   function handleWishList(){
+    if(token){
+      navigate('/wishlist')
+    }else{
+      BsNvidia('/login')
+    }
+   }
 
    function handleCart(){
     if(token){
@@ -58,15 +66,11 @@ function Header() {
         searchProducts(search).then((res)=>{
           setFetchedData(res.data)
           console.log(res.data);
-          
         });
-        
         setShowModal(true)
-
       }
       catch(error){
         console.log(error);
-        
       }
     }
     fetchProducts()
@@ -91,8 +95,7 @@ function Header() {
           <input
           onChange={(e)=>{
             setSearch(e.target.value)
-            console.log(e.target.value);
-            
+            console.log(e.target.value); 
           }}
           value={search}
             type="text"
@@ -114,9 +117,12 @@ function Header() {
         </div>:
         null
       }
-       <div className='relative flex space-x-5'>
+       <div className='relative flex space-x-7 '>
         <button onClick={handleAccount} className="text-gray-300 flex hover:text-white"><FaUser onClick={()=>navigate('/profile')} className='h-6 w-6'/>{userName?userName:"Account"} </button>
         
+        <button onClick={handleWishList} className="text-white flex hover:text-white">
+        <FaHeart className='h-7 w-6'/>
+        </button>
        
         <button onClick={handleCart} className="text-gray-300 flex hover:text-white">
           <BsCart4  className='h-7 w-7'/>
@@ -124,9 +130,6 @@ function Header() {
         </button>
         </div>
       </div>
-      {/* <div className='md:hidden text-white'>
-        <button className='focus:outline-none'>☰</button>
-      </div> */}
     </div>
   </nav>
   

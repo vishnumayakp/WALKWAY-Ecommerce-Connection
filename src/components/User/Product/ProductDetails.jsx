@@ -10,26 +10,25 @@ function ProductDetails() {
   const [product,setProduct]=useState({})
   const [state,setState]=useState(0)
   const [qty,setQty]=useState(1)
+  const [sizes,setSize]=useState(0)
   const {cartFlag,setCartFlag}=useContext(AuthContext)
 
   const {id}=useParams()
   useEffect(()=>{
     getProductById(id)
     .then((res)=>setProduct(res.data.data))  
-  },[id])
-  console.log(product);
- 
-  async function handleAddCart(productId,quantity){
+  },[id]) 
+  async function handleAddCart(productId,quantity,size){
     if (token) {
       try {
-          const res = await addToCart(productId,quantity);
-          console.log(res);
+          const res = await addToCart(productId,quantity,size);
+        console.log('response',res);
+        
           setCartFlag(!cartFlag)
           toast.success('Item added to cart', { position: 'bottom-right' });
       } catch (error) {
           toast.error('Failed to add item to cart. Please try again.', { position: 'top-right' });
-          console.log(productId);
-          
+          // console.log(error.response.data.message);    
       }
   } else {
       toast.error('Please login', { position: 'bottom-right' });
@@ -44,19 +43,14 @@ function ProductDetails() {
     <div className="w-full lg:w-[20%] flex lg:flex-col space-y-4 space-x-2 lg:space-x-0 overflow-scroll scrollnone h-[26rem]">
       {product.imageUrls &&
         product.imageUrls.map((value, index) => (
-          <div
-            key={index}
-            className={`w-24 h-24 rounded-lg border-none bg-gray-200 hover:scale-110 transition transform cursor-pointer ${state === index ? 'border-2 border-black' : ''}`}
-            onClick={() => setState(index)}
-          >
+          <div onClick={() => setState(index)} key={index}
+            className={`w-24 h-24 rounded-lg border-none bg-gray-200 overflow-hidden hover:scale-110 transition transform cursor-pointer ${state === index ? 'border-2 border-black' : ''}`}>
             <img className="w-full h-full object-cover rounded-lg" src={value} alt={`Product Thumbnail ${index + 1}`} />
           </div>
         ))}
     </div>
 
-
-    {/* Main Product Image */}
-<div className="w-full lg:w-[75%] h-[20rem] lg:h-[25rem] rounded-lg overflow-hidden bg-gray-100">
+<div className="w-full lg:w-[75%] h-[20rem] lg:h-[25rem] rounded-lg overflow-hidden  bg-gray-100">
   {product.imageUrls && (
     <img className="w-full h-full object-cover" src={product.imageUrls[state]} alt="Product Main Image" />
   )}
@@ -76,7 +70,7 @@ function ProductDetails() {
 
     <div className="space-y-4">
       <div className="border-2 w-48 rounded-lg p-2">
-        <select className="w-full focus:outline-none" name="" id="">
+        <select className="w-full focus:outline-none" name="" id="" onChange={(e)=>setSize(e.target.value)}>
           <option value="">Select size</option>
           {product.sizes &&
             product.sizes.map((value) => <option key={value} value={value}>{value}</option>)}
@@ -95,7 +89,7 @@ function ProductDetails() {
           </button>
         </div>
         <button
-          onClick={()=>handleAddCart(product.productId,qty)}
+          onClick={()=>handleAddCart(product.productId,qty,sizes)}
           className="bg-black hover:bg-gray-700 text-white px-8 py-3 rounded-lg transition duration-200"
         >
           ADD TO CART
