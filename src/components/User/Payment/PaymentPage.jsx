@@ -68,7 +68,7 @@ function PaymentPage() {
     setAddress(selected)
     setAddressDefault(selectedId)
       .then(() => {
-        toast.success('Address set as default successfully')
+        console.log('Address set as default successfully')
       })
       getAddressById()
       .then((res)=>setAddress(res))

@@ -21,6 +21,7 @@ import ProductView from './pages/Admin/ProductView';
 import AddProducts from './pages/Admin/AddProducts';
 import UserDetails from './pages/Admin/UserDetails';
 import WishListPage from './pages/User/WishListPage';
+import AllAddress from './pages/User/AllAddress';
 
 
 
@@ -37,6 +38,7 @@ function App() {
        <Route path='/wishlist' element={<WishListPage/>}/>
        <Route path='/payment' element={<Paymentsection/>}/>
        <Route path='/showorder' element={<OrderShowPage/>}/>
+       <Route path='/address' element={<AllAddress/>}/>
        <Route path='/profile' element={<ProfilePage/>}/>
        <Route path='/signup' element={<Registration/>}/>
        <Route path='/login' element={<Login/>}/>

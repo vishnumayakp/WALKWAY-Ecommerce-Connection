@@ -64,9 +64,9 @@ function Profile() {
         <div className="md:w-[40%] space-y-3 flex flex-col justify-evenly items-center">
           <FaUser className="h-20 w-20" />
           <div className="space-y-2 w-[100%] flex flex-col items-center">
-            {/* <div className="w-[70%]">
-              <button className="w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-xl">User Details</button>
-            </div> */}
+            <div className="w-[70%]">
+              <button onClick={()=> navigate('/address')} className="w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-xl">All Address</button>
+            </div>
             <div className="w-[70%]">
               <button onClick={() => navigate('/showorder')} className="w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-xl">Orders</button>
             </div>

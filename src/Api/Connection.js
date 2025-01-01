@@ -97,8 +97,8 @@ export async function getAddressById(){
 }
 
 export async function removeAddressById(id){
-    const res= await axiosInstance.get(`/Address/${id}`)
-    return (res.data)
+    const res= await axiosInstance.delete(`/Address/${id}`)
+   console.log (res.data)
 }
 
 export function updateAddressById(data){
