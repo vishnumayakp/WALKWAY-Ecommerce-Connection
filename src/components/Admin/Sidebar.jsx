@@ -70,10 +70,10 @@ function Sidebar() {
                 <IoMdPerson size={24} />
                 <span className={`${!isOpen && 'hidden'}`}>Users</span>
               </NavLink>
-              <NavLink to="/admin/reviews" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-200 hover:h-[2rem] rounded w-full">
+              {/* <NavLink to="/admin/reviews" className="flex items-center space-x-2 text-slate-600 hover:bg-yellow-200 hover:h-[2rem] rounded w-full">
                 <FaRegStarHalfStroke size={24} />
                 <span className={`${!isOpen && 'hidden'}`}>Reviews</span>
-              </NavLink>
+              </NavLink> */}
             </ul>
           </div>
         </div>

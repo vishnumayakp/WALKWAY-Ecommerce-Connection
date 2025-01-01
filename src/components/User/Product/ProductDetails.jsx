@@ -16,7 +16,7 @@ function ProductDetails() {
   const {id}=useParams()
   useEffect(()=>{
     getProductById(id)
-    .then((res)=>setProduct(res.data.data))  
+    .then((res)=>setProduct(res))  
   },[id]) 
   async function handleAddCart(productId,quantity,size){
     if (token) {

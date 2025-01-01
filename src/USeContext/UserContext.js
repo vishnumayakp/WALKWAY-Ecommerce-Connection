@@ -35,6 +35,7 @@ export const UserAuth = ({children})=>{
             }
         }else{
             setError('Login Failed: Invalid email or password')    
+            toast.error('Login Failed: Invalid email or password')
         }    
        }).catch((error)=>{
         setError('An error occurred during login login')

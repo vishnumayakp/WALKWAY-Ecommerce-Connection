@@ -3,6 +3,7 @@ import product1 from '../../../assets/kids.png'
 import { addOrRemoveWishList, getProductByCategory, getProducts, getWishListById } from '../../../Api/Connection'
 import {useNavigate, useParams,} from 'react-router-dom'
 import { toast } from 'react-toastify'
+import axios from 'axios'
 
 
 function Overview() {
@@ -33,7 +34,7 @@ function Overview() {
         .catch((error)=>console.log(error))
     }
   }, [category, token]);
-  
+
 
   async function handleWishList(productId) {
  if(token){
@@ -81,7 +82,7 @@ return (
       </div>
     </div>
     <div className="flex flex-wrap w-[100%] justify-center gap-10 h-[25rem] mt-5">
-      {product.map((value) => {
+      {product && product.map((value) => {
         const isInWishList = wishList?.find(item => item.productId === value.productId)
 
         return (

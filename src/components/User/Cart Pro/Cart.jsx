@@ -87,7 +87,7 @@ async function handleDelete(productId){
                   <button onClick={() => handleIncrement(value.productId)} className='text-3xl w-10 border-x-2 border-y-2 bg-gray-200'>+</button>
                 </div>
                 <span className='w-[20%] text-center'>₹ {value.totalPrice}</span> {/* Total price column */}
-                <button onClick={() => handleDelete(value.productId)} className='w-[10%] text-center border bg-red-400 text-white p-1 rounded'>Remove</button>
+                <button onClick={() => handleDelete(value.productId)} className='w-[12%] text-center border bg-red-400 text-white p-1 rounded'>Remove</button>
               </div>
             ))
           ) : (
@@ -111,7 +111,7 @@ async function handleDelete(productId){
             </div>
             <div>
               {cart ? (
-                <button onClick={() => navigate('/payment')} className='w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-3xl'>PROCEED TO CHECKOUT</button>
+                <button onClick={() => cart.cartItems .length>0 && navigate('/payment')} className='w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-3xl'>PROCEED TO CHECKOUT</button>
               ) : (
                 <button onClick={() => navigate('/')} className='w-[100%] h-10 border bg-black hover:bg-gray-600 text-white rounded-3xl'>GO TO STORE</button>
               )}

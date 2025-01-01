@@ -1,123 +1,120 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { FaUserTie } from "react-icons/fa";
-import {useParams} from 'react-router-dom'
-import { getUserById, updateUserStatus } from '../../../Api/Connection';
+import { useParams } from 'react-router-dom';
+import { blockUnblockUser, getOrderById, getUserById } from '../../../Api/Connection';
 
 function DetailsOfUsers() {
-    const {id} = useParams()
-    const [details,setDetails]=useState({})
-    const [user,setuser]=useState([])
-    const [orders,setOrders]=useState([])
+    const { id } = useParams();
+    const [details, setDetails] = useState({});
+    const [orders, setOrders] = useState([]);
+    const role = localStorage.getItem('role');
 
-    useEffect(()=>{
-        const fetchUsers =async()=>{
-            try{
-                const res=await getUserById(id)
-                setDetails(res.data)
-                console.log("fetched user details");
-                
-            }catch(error){
-                console.log("can't fetch user details");
-                
-            }
+    useEffect(() => {
+        getUserById(id)
+            .then((res) => {
+              console.log("User details fetched:", res.data);
+              setDetails(res.data.data); 
+            })
+            .catch((error) => {
+              console.log("Error fetching user details:", error);
+            });
+
+          getOrderById(id)
+            .then((res) => {
+              console.log("User orders fetched:", res);
+              setOrders(res); 
+            })
+            .catch((error) => {
+              console.log("Error fetching orders:", error);
+            });
+      }, [id, role]);
+
+      const handleUserStatus = async (id, status) => {
+        try {
+          const response = await blockUnblockUser(id);
+          if (response) {
+            setDetails((prevDetails) => ({
+              ...prevDetails,
+              isBlocked: !prevDetails.isBlocked
+            }));
+          }
+        } catch (error) {
+          console.log('Error updating user status:', error);
+          alert('An error occurred while updating user status.');
         }
+      };
 
-        const fetchUserOrders=async()=>{
-          const res=await getUserById(id)
-          setuser(res.data)
-          setOrders(res.data.orders)
-        }
-        fetchUserOrders()
-        fetchUsers()
-    },[id])
+    const totalOrders = orders ? orders.length : 0;
 
-    const handleUserStatus =(id,status)=>{
-      updateUserStatus(id,!status)
-      .then(()=>{
-        setDetails(prev=>({...prev, status: !prev.status}))
-      })
-      .catch((error)=>{
-        console.log("cant chage the status",error);
-        
-      })
-   }
+    return (
+        <div className="min-h-screen bg-gray-100 py-10 px-5">
+            <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+                {/* User Details Section */}
+                <div className="flex flex-col items-center p-8">
+                    <FaUserTie className="w-32 h-32 mb-4 text-indigo-600" />
+                    <h1 className="text-3xl font-bold text-gray-800">{details.userName}</h1>
+                    <p className="text-gray-500">{details.email}</p>
+                    <p className="mt-2 text-sm text-gray-400">{details.id}</p>
 
-    const totalOrders = details && details.orders ? details.orders.length : 0
-    const totalcarts = details && details.cart ? details.cart.length:0
+                    <div className="mt-6 text-center">
+                        <span className="block text-xl font-bold text-gray-800">
+                            {details.isBlocked ? 'Blocked' : 'Active'}
+                        </span>
+                        <p className="text-gray-500 text-sm">Status</p>
+                        {details && details.id && (
+                            <button
+                                onClick={() => handleUserStatus(details.id, details.isBlocked)}
+                                className={`mt-4 border ${details.isBlocked ? 'bg-green-600' : 'bg-red-600'} text-white rounded p-2 w-24`}
+                            >
+                                {details.isBlocked ? 'Unblock' : 'Block'}
+                            </button>
+                        )}
+                    </div>
+                </div>
 
-  return (
-    <div className="bg-gray-100 space-x-10 h-screen flex items-center justify-center">
-    <div className="bg-white shadow-lg rounded-lg p-6 text-center max-w-sm w-full">
-      <div className="relative flex justify-center">
-        <FaUserTie className='w-32 h-[20%]' />
-      </div>
-      <div className="mt-10">
-        <h1 className="text-2xl font-bold text-gray-800">{details.name}</h1>
-        <p className="text-gray-500">{details.id}</p>
-        <p className="mt-2 text-sm text-gray-400">
-        {details.email}
-        </p>
-      </div>
-      <div className="mt-6 flex justify-around text-center">
-        <div>
-          <span className="font-bold text-gray-800">{totalOrders}</span>
-          <p className="text-gray-500 text-sm">Orders</p>
+                {/* Orders Table Section */}
+                <div className="p-8">
+                    <h2 className="text-2xl font-semibold text-gray-800 mb-6">Order Items</h2>
+                    <div className="overflow-x-auto shadow-md rounded-lg">
+                        <table className="min-w-full bg-white border border-gray-200">
+                            <thead>
+                                <tr className="bg-gray-100">
+                                    <th className="py-3 px-6 text-left text-sm font-medium text-gray-700">Thumbnail</th>
+                                    <th className="py-3 px-6 text-left text-sm font-medium text-gray-700">Order ID</th>
+                                    <th className="py-3 px-6 text-left text-sm font-medium text-gray-700">Product Name</th>
+                                    <th className="py-3 px-6 text-left text-sm font-medium text-gray-700">Quantity</th>
+                                    <th className="py-3 px-6 text-left text-sm font-medium text-gray-700">Total Price</th>
+                                    <th className="py-3 px-6 text-left text-sm font-medium text-gray-700">Order Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {orders.length > 0 ? (
+                                    orders.map((order) =>
+                                        order.orderProducts.map((item) => (
+                                            <tr key={item.id} className="hover:bg-gray-50">
+                                                <td className="py-4 px-6 border-b">
+                                                    <img className="h-16 w-16 object-cover rounded-lg" src={item.image} alt={item.name} />
+                                                </td>
+                                                <td className="py-4 px-6 border-b text-sm text-gray-800">{order.orderId}</td>
+                                                <td className="py-4 px-6 border-b text-sm text-gray-800">{item.productName}</td>
+                                                <td className="py-4 px-6 border-b text-sm text-gray-800">{item.quantity}</td>
+                                                <td className="py-4 px-6 border-b text-sm text-gray-800">{item.totalPrice}</td>
+                                                <td className="py-4 px-6 border-b text-sm text-gray-800">{order.orderStatus}</td>
+                                            </tr>
+                                        ))
+                                    )
+                                ) : (
+                                    <tr>
+                                        <td colSpan="6" className="py-4 px-6 border-b text-center text-gray-500">No orders available.</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-          <span className="font-bold text-gray-800">{details.status ? 'Blocked' : 'Active'}</span>
-          <p className="text-gray-500 text-sm">Status</p>
-        </div>
-        <div>
-          <span className="font-bold text-gray-800">{totalcarts}</span>
-          <p className="text-gray-500 text-sm">Cart</p>
-        </div>
-      </div>
-      <button onClick={()=>handleUserStatus(details.id,details.status)} className={`border ${details.status ? 'bg-green-600' : 'bg-red-600'} text-white rounded p-2 w-20`}> {details.status ? 'Unblock' : 'Block'}</button>
-    </div>
-
-
-    <div  className="p-8 bg-gray-100 min-h-screen">
-    <div className="bg-white shadow-md overflow-scroll scrollnone w-[97%] mt-10 rounded-lg p-6">
-  <h2 className="text-lg font-semibold mb-4">Orders</h2>
-  <table className="min-w-full bg-white border border-gray-200">
-    <thead>
-      <tr>
-        <th className="py-2 px-4 border-b">Thumbnail</th>
-        <th className="py-2 px-4 border-b">Id</th>
-        <th className="py-2 px-4 border-b">Name</th>
-        <th className="py-2 px-4 border-b">Qty</th>
-        <th className="py-2 px-4 border-b">Total Price</th>
-      </tr>
-    </thead>
-    <tbody>
-
-      {orders.length>0 ? (
-        orders.map((order)=>(
-          order.items.map(item=>(
-            <tr className="hover:bg-gray-50 w-[100%]">
-          <td className="py-2 w-[25%] border-b"><img className='h-[5rem] w-[5rem]' src={item.image} alt="" /></td>
-          <td className="py-2 px-4 border-b">{order.id}</td>
-          <td className="py-2 px-4 border-b">{item.name}</td>
-          <td className="py-2 px-4 border-b">{item.count}</td>
-          <td className="py-2 px-4 border-b">{order.totalPrice}</td>
-        </tr>
-          ))
-        ))
-      ):(
-        <tr>
-              <td colSpan="5" className="px-4 py-2 border text-center">
-                No orders available.
-              </td>
-            </tr>
-      )}
-  
-    </tbody>
-  </table>
-</div>
-</div>
-  </div>
-
-  )
+    );
 }
 
-export default DetailsOfUsers
+export default DetailsOfUsers;

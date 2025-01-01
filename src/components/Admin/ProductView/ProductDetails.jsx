@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import {useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import { deleteProductById, getProductById, getProducts } from '../../../Api/Connection'
 import EditPro from '../EditProducts/EditPro'
+import UpdateProduct from '../EditProducts/EditPro'
+import { toast } from 'react-toastify'
 
 function ProductDetails() {
   const {id}=useParams()
@@ -9,6 +11,7 @@ function ProductDetails() {
     const [products,setProducts]=useState([])
     const [editModal,setEditModal]=useState(false)
     const [pId,setPId]=useState("");
+    const navigate=useNavigate();
     
   const [state,setState]=useState(0)
 
@@ -19,15 +22,15 @@ function ProductDetails() {
   
     const closeEditModal=()=>{
       setEditModal(false)
+      getProductById(id)
+      .then((res)=>setDetails(res))
     }
 
     useEffect(()=>{       
       try{
          getProductById(id)
-         .then((res)=>{
-          console.log(res.data.data);
-          
-          setDetails(res.data.data)
+         .then((res)=>{          
+          setDetails(res)
          })   
           }catch(error){
                 console.log("can't fetch the data",error);   
@@ -47,16 +50,15 @@ function ProductDetails() {
       fetchProducts()
     },[])
 
-    const handleDelete=async(id)=>{
-      try{
-        await deleteProductById(id);
-        alert('product deleted')
-      }catch(error){
-        console.log("failed to delete product");
-        alert("failed to delete product")
-        
-      }
-    }
+    const handleDelete =async(id)=>{
+         try{
+           await deleteProductById(id)
+          toast.success('Suucessfully deleted product.', { position: 'top-right' });
+          navigate('/admin/products')
+         }catch(error){
+          toast.error("Failed to delete the product",{ position: 'top-right' })
+         }
+       }   
  
   return (
     <div className='flex mt-20 justify-center lg:p-5'>
@@ -101,12 +103,12 @@ function ProductDetails() {
       </div>
       <div className='flex space-x-4'>
         <button
-          onClick={() => openEditModal(details.id)}
+          onClick={() => openEditModal(details.productId)}
           className='bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300'>
           Edit
         </button>
         <button
-          onClick={() => handleDelete(details.id)}
+          onClick={() => handleDelete(details.productId)}
           className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300'>
           Delete
         </button>
@@ -114,7 +116,7 @@ function ProductDetails() {
     </div>
   </div>
 
-  {editModal && <EditPro id={pId} closeEditModal={closeEditModal} />}
+  {editModal && <UpdateProduct id={pId} closeEditModal={closeEditModal} />}
 </div>
 
   )

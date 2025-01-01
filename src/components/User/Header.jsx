@@ -126,7 +126,9 @@ function Header() {
        
         <button onClick={handleCart} className="text-gray-300 flex hover:text-white">
           <BsCart4  className='h-7 w-7'/>
-          <span className='absolute right-5 bg-white text-black rounded-2xl text-xs w-4'>{cartLength.totalItems}</span>
+          {cartLength && cartLength.totalItems > 0 ? (
+            <span className='absolute right-5 bg-white text-black rounded-2xl text-xs w-4'>{cartLength.totalItems}</span>
+            ) : null}
         </button>
         </div>
       </div>

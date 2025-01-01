@@ -9,7 +9,7 @@ function Paymentsection() {
     <div>
       <Header/>
       <PaymentPage/>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }

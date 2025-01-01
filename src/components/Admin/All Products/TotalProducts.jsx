@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { FaSearch } from "react-icons/fa";
 import { BsFillPlusCircleFill, BsNvidia } from "react-icons/bs";
 import { deleteProductById, getProductById, getProducts, searchProducts } from '../../../Api/Connection';
-import AddingProducts from '../AddProducts/AddingProducts';
 import EditPro from '../EditProducts/EditPro';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import AddingProducts from '../AddProducts/AddingProducts';
+import UpdateProduct from '../EditProducts/EditPro';
 
-function TotalProducts({id}) {
+function TotalProducts() {
 
   const [products,setProducts]=useState([])
   const navigate = useNavigate()
@@ -156,7 +157,7 @@ function TotalProducts({id}) {
                 <td className="py-2 px-4 w-[30%] border-b">
                   <div className="flex space-x-2">
                     <button onClick={() => handleProductClick(value.productId)} className='border bg-green-600 text-white rounded p-1 w-20 hover:bg-green-500 transition-all'>View</button>
-                    <button onClick={() => openEditModal(value.id)} className='border bg-yellow-400 text-white rounded p-1 w-20 hover:bg-yellow-300 transition-all'>Edit</button>
+                    <button onClick={() => openEditModal(value.productId)} className='border bg-yellow-400 text-white rounded p-1 w-20 hover:bg-yellow-300 transition-all'>Edit</button>
                     <button onClick={() => handleDelete(value.productId)} className='border bg-red-600 text-white rounded p-1 w-20 hover:bg-red-500 transition-all'>Del</button>
                   </div>
                 </td>
@@ -166,10 +167,11 @@ function TotalProducts({id}) {
         </tbody>
       </table>
     </div>
+
   </div>
 
   {isModal && <AddingProducts closeModal={closeModal} />}
-  {editModal && <EditPro id={pId} closeEditModal={closeEditModal} />}
+  {editModal && <UpdateProduct id={pId} closeEditModal={closeEditModal} />}
 </div>
 
   )
