@@ -8,7 +8,7 @@ const WishList = () => {
   const [wishList, setWishList] = useState([]);
   const[products,setProducts]=useState([])
   const token = localStorage.getItem('authToken');
-  const [sizes,setSize]=useState(0)
+  const [sizes,setSize]=useState({})
   const navigate=useNavigate();
   const {cartFlag,setCartFlag}=useContext(AuthContext)
 
@@ -42,14 +42,16 @@ const WishList = () => {
   }
 
   async function handleAddCart(productId){
-    if (!sizes[productId]) {
-      toast.error('Please select a size ', { position: 'top-right' });
+    const selectedSize= sizes[productId];
+    console.log(selectedSize)
+    if(!selectedSize){
+      toast.error('Please select a size', { position: 'top-right' });
       return;
     }
       if (token) {
         try {
           const quantity=1;
-            const res = await addToCart(productId,quantity,sizes);
+            const res = await addToCart(productId,quantity,selectedSize);
             
             const update=wishList.filter(item=>item.productId!==productId);
             setWishList(update)
@@ -64,7 +66,14 @@ const WishList = () => {
         toast.error('Please login', { position: 'bottom-right' });
         navigate('/login');
     }
-    } 
+  };
+  const handleSizeChange=(productId,size)=>{
+    setSize((prevSize)=>({
+      ...prevSize,
+      [productId]:size
+    }))
+  } 
+
  
   
   return (
@@ -118,7 +127,7 @@ const WishList = () => {
                 Select Size:
               </label>
               <select
-               onChange={(e)=>setSize(e.target.value)}
+               onChange={(e) => handleSizeChange(value.productId, e.target.value)} 
                 id={`size-select-${index}`}
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
                 // onChange={(e) => handleSizeChange(value.productId, e.target.value)}

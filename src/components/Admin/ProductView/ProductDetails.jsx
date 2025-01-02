@@ -91,6 +91,7 @@ function ProductDetails() {
       <div className='flex flex-col space-y-3'>
         <h1 className='text-3xl font-bold text-gray-800'>{details?.productName}</h1>
         <p className='text-sm text-black font-bold leading-6'>{details?.productBrand}</p>
+        <p className='text-sm text-black font-bold leading-6'>{details?.category}</p>
         <p className='text-sm text-gray-600 leading-6'>
           {details?.productDescription?.split('\n').map((line, index) => (
             <span key={index}>

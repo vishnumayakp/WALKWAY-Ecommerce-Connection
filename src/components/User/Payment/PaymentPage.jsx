@@ -60,7 +60,7 @@ function PaymentPage() {
         console.error(err)
       })
     }
-  }, [token])
+  }, [token,showDropdown])
 
   const handleChangeAddress = (e) => {
     const selectedId = e.target.value
@@ -239,8 +239,7 @@ function PaymentPage() {
               <select
                 onChange={handleChangeAddress}
                 value={address?.addressId || ''}
-                className="w-full p-2 mt-2 border rounded"
-              >
+                className="w-full p-2 mt-2 border rounded">
                 {addressList.map((addr) => (
                   <option key={addr.addressId} value={addr.addressId}>
                     {addr.fullName} - {addr.place}
