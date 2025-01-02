@@ -29,7 +29,7 @@ function PaymentPage() {
 
   const token = localStorage.getItem('authToken')
   const navigate = useNavigate()
-  const { setCartFlag } = useContext(AuthContext)
+  const {cartFlag,setCartFlag} = useContext(AuthContext)
 
   useEffect(() => {
     if (token) {
@@ -158,6 +158,7 @@ function PaymentPage() {
       
               console.log("Order placed successfully:", placeOrderResponse);
               toast.success("Order placed successfully!")
+              setCartFlag(!cartFlag)
               getCartById()
               .then((res)=>setShowproduct(res))
       

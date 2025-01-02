@@ -85,8 +85,7 @@ const UpdateProduct = ({ closeEditModal, id }) => {
       !productData.ProductPrice ||
       !productData.MRP ||
       !productData.Stock ||
-      productData.Sizes.length === 0 ||
-      images.length === 0
+      productData.Sizes.length === 0 
     ) {
       setError("All fields are required.");
       return false;
@@ -122,7 +121,9 @@ const UpdateProduct = ({ closeEditModal, id }) => {
     formData.append("MRP", productData.MRP);
 
     productData.Sizes.forEach((size) => formData.append("Sizes[]", size));
-    Array.from(images).forEach((file) => formData.append("images", file));
+    if (images.length > 0) {
+      Array.from(images).forEach((file) => formData.append("images", file));
+    }
 
     try {
       const response = await axios.put(
@@ -272,7 +273,7 @@ const UpdateProduct = ({ closeEditModal, id }) => {
                 multiple
                 onChange={handleFileChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                required
+                // required
               />
             </div>
 

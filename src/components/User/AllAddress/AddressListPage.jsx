@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { getAddressById, removeAddressById } from '../../../Api/Connection';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function AddressListPage() {
   const [addressList, setAddressList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAddressById()
@@ -78,7 +80,7 @@ function AddressListPage() {
         <div className="mt-8 text-center">
           <button
             className="bg-black text-white py-2 px-6 rounded-lg hover:bg-gray-800 transition"
-            onClick={() => console.log('Add New Address')}
+            onClick={() =>navigate('/profile') }
           >
             Add New Address
           </button>

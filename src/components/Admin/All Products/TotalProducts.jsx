@@ -178,3 +178,5 @@ function TotalProducts() {
 }
 
 export default TotalProducts
+
+

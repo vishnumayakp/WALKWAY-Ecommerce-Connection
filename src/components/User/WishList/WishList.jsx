@@ -42,17 +42,22 @@ const WishList = () => {
   }
 
   async function handleAddCart(productId){
+    if (!sizes[productId]) {
+      toast.error('Please select a size ', { position: 'top-right' });
+      return;
+    }
       if (token) {
         try {
           const quantity=1;
             const res = await addToCart(productId,quantity,sizes);
+            
             const update=wishList.filter(item=>item.productId!==productId);
             setWishList(update)
             await removeProductById(productId)
             setCartFlag(!cartFlag)
             toast.success('Item added to cart', { position: 'bottom-right' });
         } catch (error) {
-            toast.error('Failed to add item to cart. Please try again.', { position: 'top-right' });
+            // toast.error('Failed to add item to cart. Please try again.', { position: 'top-right' });
             console.log('response',error);    
         }
     } else {

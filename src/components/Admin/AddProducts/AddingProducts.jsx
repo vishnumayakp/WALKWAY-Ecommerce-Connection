@@ -7,7 +7,7 @@ const AddingProducts = ({ closeModal }) => {
     ProductBrand: "",
     ProductDescription: "",
     Sizes: [],
-    CategoryId: 1,
+    CategoryId: 0,
     ProductPrice: 0,
     MRP: 0,
     Stock: 0,

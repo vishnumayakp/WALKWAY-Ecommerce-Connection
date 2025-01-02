@@ -10,23 +10,36 @@ function ShowOrder() {
     const fetchOrderData = async () => {
       try {
         const res = await getOrderDetails(token);
-        setShowOrder(res.data); // Set the fetched data
-        setLoading(false);  // Set loading to false when done
+        setShowOrder(res.data); 
+        setLoading(false); 
       } catch (err) {
         setError('Failed to fetch orders.');
-        setLoading(false);  // Set loading to false on error
+        setLoading(false);  
       }
     };
 
     fetchOrderData();
   }, [token]);
 
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Pending':
+        return 'text-yellow-500';
+      case 'Completed':
+        return 'text-green-500';
+      case 'Cancelled':
+        return 'text-red-500';
+      default:
+        return 'text-gray-500';
+    }
+  };
+
   if (loading) {
-    return <div>Loading...</div>;  // Show loading state
+    return <div>Loading...</div>;  
   }
 
   if (error) {
-    return <div>{error}</div>;  // Show error message
+    return <div>{error}</div>;  
   }
 
   return (
@@ -47,7 +60,9 @@ function ShowOrder() {
                   {/* Order Status */}
                   <div className='mb-3'>
                     <span className='text-sm font-semibold'>Status:</span>
-                    <span className='text-sm ml-2'>{order.orderStatus}</span>
+                    <span className={`text-sm ml-2 ${getStatusColor(order.orderStatus)}`}>
+                      {order.orderStatus}
+                    </span>
                   </div>
 
                   {/* Transaction ID */}

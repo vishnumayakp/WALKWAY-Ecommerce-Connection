@@ -17,6 +17,11 @@ export async function getProductById(productId){
    return (res.data.data)
 }
 
+export async function getProductPaginated(page,size){
+    const res= await axiosInstance.get(`/Product/pagination?pageNumber=${page}&size=${size}`)
+    return (res.data)
+}
+
 export async function getProductByCategory(category){
     return await axiosInstance.get(`/Product/GetByCategory?category=${category}`)
 }
